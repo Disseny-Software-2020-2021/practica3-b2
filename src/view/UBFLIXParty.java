@@ -2,6 +2,8 @@ package view;
 
 /* Interfície Gràfica desenvolupada per: Nils Ballús, Joan Cano, David Rial i Miquel Guiot */
 
+import controller.Controller;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -41,6 +43,7 @@ public class UBFLIXParty extends JFrame{
     private HashMap<String, JPopupMenu> popupMenuTemporades;
     private DefaultTableModel tableModelVis;
     private DefaultTableModel tableModelVal;
+    public Controller controlador;
 
 
     /**
@@ -50,6 +53,7 @@ public class UBFLIXParty extends JFrame{
         super("UBFLIXParty");
         this.setLocation(30, 30);
         this.setVisible(true);
+        controlador = Controller.getInstance();
         initComponents();
     }
 
