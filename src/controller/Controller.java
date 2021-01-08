@@ -11,6 +11,7 @@ import java.util.TreeSet;
 
 public class Controller {
 
+    private static Controller instancia;
     private AbstractFactoryData factory;      // Origen de les dades
     private DataService dataService;         // Connexio amb les dades
     private CarteraClients carteraClients;   // Model
@@ -19,7 +20,7 @@ public class Controller {
     private List<ValoracioEstrella> valoracionsEstrella;
     private List<ValoracioThumb> valoracionsThumb;
 
-    public Controller() {
+    private Controller() {
         factory = new FactoryMOCK();
         dataService = new DataService(factory);
         try {
@@ -31,6 +32,13 @@ public class Controller {
         } catch (Exception e) {
             // TO DO
         }
+    }
+
+    public static Controller getInstance(){
+        if (instancia == null) {
+            instancia = new Controller();
+        }
+        return instancia;
     }
 
     public void iniSetUp() throws Exception {
