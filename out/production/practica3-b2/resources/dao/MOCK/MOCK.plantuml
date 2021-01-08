@@ -1,0 +1,223 @@
+@startuml
+
+title __MOCK's Class Diagram__\n
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOClientMOCK {
+          - listClients : Map<String, Client>
+          + DAOClientMOCK()
+          + add()
+          + delete()
+          + findClientByUserNameAndPassword()
+          + getAll()
+          + getById()
+          + update()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOEpisodiMOCK {
+          - idToEpisodis : Map<String, ArrayList<Episodi>>
+          + DAOEpisodiMOCK()
+          + add()
+          + delete()
+          + getAll()
+          + getById()
+          + getEpisodisForTemporada()
+          + update()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOFollowersMOCK {
+          - followers : Map<String, ArrayList<Usuari>>
+          + DAOFollowersMOCK()
+          + add()
+          + delete()
+          + getAll()
+          + getById()
+          + getFollowersForUsuari()
+          + update()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOFollowingMOCK {
+          - following : Map<String, ArrayList<Usuari>>
+          + DAOFollowingMOCK()
+          + add()
+          + delete()
+          + getAll()
+          + getById()
+          + getFollowingForUsuari()
+          + update()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOMyListMOCK {
+          - mylist : Map<String, ArrayList<Serie>>
+          + DAOMyListMOCK()
+          + add()
+          + addToMyList()
+          + delete()
+          + getAll()
+          + getById()
+          + getMyListForUsuari()
+          + removeFromMyList()
+          + update()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOPostMOCK {
+          - postList : Map<String, ArrayList<Post>>
+          + DAOPostMOCK()
+          + add()
+          + add()
+          + delete()
+          + getAll()
+          + getById()
+          + update()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOSerieMOCK {
+          - idToSerie : Map<String, Serie>
+          + DAOSerieMOCK()
+          + add()
+          + delete()
+          + getAll()
+          + getById()
+          + update()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOTemporadaMOCK {
+          - idToTemporades : Map<String, ArrayList<Temporada>>
+          + DAOTemporadaMOCK()
+          + add()
+          + delete()
+          + getAll()
+          + getById()
+          + getTemporadesForSerie()
+          + update()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOUsuariMOCK {
+          - listUsuaris : Map<String, ArrayList<Usuari>>
+          + DAOUsuariMOCK()
+          + add()
+          + delete()
+          + getAll()
+          + getById()
+          + getUsuarisForClient()
+          + update()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOValoracioEstrellaMOCK {
+          - listValoracions : Map<String, ArrayList<ValoracioEstrella>>
+          + DAOValoracioEstrellaMOCK()
+          + add()
+          + add()
+          + delete()
+          + getAll()
+          + getById()
+          + update()
+          + update()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOValoracioThumbMOCK {
+          - listValoracions : Map<String, ArrayList<ValoracioThumb>>
+          + DAOValoracioThumbMOCK()
+          + add()
+          + add()
+          + delete()
+          + getAll()
+          + getById()
+          + update()
+          + update()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOWatchingMOCK {
+          - watching : Map<String, ArrayList<Watching>>
+          + DAOWatchingMOCK()
+          + add()
+          + addToWatching()
+          + delete()
+          + getAll()
+          + getById()
+          + getWatchingForUsuari()
+          + update()
+          + updateToWatching()
+      }
+    }
+  }
+  
+
+  ub.edu.resources.dao.MOCK.DAOClientMOCK .up.|> ub.edu.resources.dao.DAOClient
+  ub.edu.resources.dao.MOCK.DAOEpisodiMOCK .up.|> ub.edu.resources.dao.DAOEpisodi
+  ub.edu.resources.dao.MOCK.DAOFollowersMOCK .up.|> ub.edu.resources.dao.DAOFollowers
+  ub.edu.resources.dao.MOCK.DAOFollowingMOCK .up.|> ub.edu.resources.dao.DAOFollowing
+  ub.edu.resources.dao.MOCK.DAOMyListMOCK .up.|> ub.edu.resources.dao.DAOMyList
+  ub.edu.resources.dao.MOCK.DAOPostMOCK .up.|> ub.edu.resources.dao.DAOPost
+  ub.edu.resources.dao.MOCK.DAOSerieMOCK .up.|> ub.edu.resources.dao.DAOSerie
+  ub.edu.resources.dao.MOCK.DAOTemporadaMOCK .up.|> ub.edu.resources.dao.DAOTemporada
+  ub.edu.resources.dao.MOCK.DAOUsuariMOCK .up.|> ub.edu.resources.dao.DAOUsuari
+  ub.edu.resources.dao.MOCK.DAOValoracioEstrellaMOCK .up.|> ub.edu.resources.dao.DAOValoracioEstrella
+  ub.edu.resources.dao.MOCK.DAOValoracioThumbMOCK .up.|> ub.edu.resources.dao.DAOValoracioThumb
+  ub.edu.resources.dao.MOCK.DAOWatchingMOCK .up.|> ub.edu.resources.dao.DAOWatching
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
