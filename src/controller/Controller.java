@@ -142,6 +142,7 @@ public class Controller {
     public void addClient(String idClient, String psw, String dni, String adress, boolean vip) throws Exception {
         if ((carteraClients.find(idClient) == null) && (Client.isValidPassword(psw)) && (carteraClients.find_id(dni) == null)) {
             carteraClients.addClient(idClient, psw, dni, adress, vip);
+            this.dataService.addClient(carteraClients.find(idClient));
         } else {
             throw new Exception("Error");
         }
