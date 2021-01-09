@@ -140,6 +140,9 @@ public class Controller {
 
 
     public void addClient(String idClient, String psw, String dni, String adress, boolean vip) throws Exception {
+        if (idClient.equals("")  || psw.equals("")  || dni.equals("")  || adress.equals("")){
+            throw new Exception("ERROR: Omplena les dades");
+        }
         if ((carteraClients.find(idClient) == null) && (Client.isValidPassword(psw)) && (carteraClients.find_id(dni) == null)) {
             carteraClients.addClient(idClient, psw, dni, adress, vip);
             this.dataService.addClient(carteraClients.find(idClient));
@@ -417,5 +420,9 @@ public class Controller {
             }
         }
         return false;
+    }
+
+    public boolean LoginClient(String idClient, String psw){
+        return carteraClients.validLogin(idClient, psw);
     }
 }

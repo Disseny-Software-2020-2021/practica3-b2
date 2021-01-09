@@ -11,15 +11,16 @@ public class CarteraClients {
 
     public Client find(String username) {
 
-        for (Client c: llista) {
+        for (Client c : llista) {
             if (c.getName().equals(username)) return c;
         }
         return null;
 
     }
+
     public Client find_id(String dni) {
 
-        for (Client c: llista) {
+        for (Client c : llista) {
             if (c.getIdClient().equals(dni)) return c;
         }
         return null;
@@ -38,5 +39,13 @@ public class CarteraClients {
         client.setAdress(adress);
         client.setVip(vip);
         llista.add(client);
+    }
+
+    public boolean validLogin(String idClient, String psw) {
+        Client client = this.find(idClient);
+        if (client.getPwd().equals(psw)) {
+            return true;
+        }
+        return false;
     }
 }

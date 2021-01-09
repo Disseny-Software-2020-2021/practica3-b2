@@ -90,9 +90,10 @@ class FrmRegistre extends JDialog {
                 textPassword2.setText("");
             }
             else{
-                String idClient = new String(labelNomReal.getText());
-                String dni = new String(labelDNI.getText());
-                String adress = new String(labelAdreca.getText());
+                String nomReal = new String(textNomReal.getText());
+                String idClient = new String(textUsername.getText());
+                String dni = new String(textDNI.getText());
+                String adress = new String(textAdreca.getText());
                 // VIP NO IMPLEMENTAT --> True per defecte
                 Boolean vip = true;
                 controlador.addClient(idClient, contrassenya1, dni, adress, vip);
