@@ -5,10 +5,7 @@ import resources.service.AbstractFactoryData;
 import resources.service.DataService;
 import resources.service.FactoryMOCK;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Controller {
 
@@ -145,6 +142,8 @@ public class Controller {
         }
         if ((carteraClients.find(idClient) == null) && (Client.isValidPassword(psw)) && (carteraClients.find_id(dni) == null)) {
             carteraClients.addClient(idClient, psw, dni, adress, vip);
+            //List<Usuari> listausuaris = Collections.emptyList();
+            //carteraClients.find(idClient).setUsuaris(listausuaris);
             this.dataService.addClient(carteraClients.find(idClient));
         } else {
             throw new Exception("Error");
