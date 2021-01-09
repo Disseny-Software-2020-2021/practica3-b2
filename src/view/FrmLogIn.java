@@ -20,6 +20,7 @@ class FrmLogIn extends JDialog {
     private JLabel labelPassword;
     private JButton btnRegistrar;
     private Controller controlador;
+    public String idClient;
     /**
      * Constructor de la finestra del LogIn on es fixa l'aspecte d'aquesta i s'inicialitzen els components
      */
@@ -85,6 +86,7 @@ class FrmLogIn extends JDialog {
             String psw = new String(textPassword.getPassword());
             if (this.controlador.LoginClient(idClient, psw)) {
                 String info = "Log-in correcte";
+                this.idClient = idClient;
                 JOptionPane.showMessageDialog(this, info, "INFORMACIÓ LOG-IN", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
             }

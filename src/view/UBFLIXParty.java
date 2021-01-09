@@ -44,6 +44,7 @@ public class UBFLIXParty extends JFrame {
     private DefaultTableModel tableModelVis;
     private DefaultTableModel tableModelVal;
     public Controller controlador;
+    private String clientName;
 
 
     /**
@@ -217,6 +218,7 @@ public class UBFLIXParty extends JFrame {
         dialog.setVisible(true);
         jPanel.setVisible(true);
         refreshLlistes();
+        this.clientName = dialog.idClient;
     }
 
     /**
