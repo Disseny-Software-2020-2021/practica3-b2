@@ -422,8 +422,13 @@ public class Controller {
         return false;
     }
 
-    public boolean LoginClient(String idClient, String psw) throws Exception {
-        return carteraClients.validLogin(idClient, psw);
+    public boolean LoginClient(String idClient, String psw){
+        try {
+            return carteraClients.validLogin(idClient, psw);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public List<String> getMyList(String idClient, String nom) {

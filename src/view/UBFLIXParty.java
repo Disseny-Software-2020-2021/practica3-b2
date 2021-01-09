@@ -11,7 +11,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.List;
+
 import controller.Controller;
+import model.Usuari;
 
 /**
  * GUI bàsica de l'app UBFLIX on es mostraran les diferents llistes corresponent a cada client que hagi realitzat el Log In.
@@ -305,7 +308,7 @@ public class UBFLIXParty extends JFrame{
      * Mètode que actualitza les sèries de la llista MyList
      */
     private void refreshMyList() {
-        String[] series = controlador.getMyList("ajaleo",comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
+        String[] series = controlador.getMyList("ajaleo", comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
         listMyList.setListData(series);
     }
 
