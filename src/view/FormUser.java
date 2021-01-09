@@ -1,5 +1,7 @@
 package view;
 
+import controller.Controller;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -9,6 +11,8 @@ public class FormUser extends JDialog{
     private JButton buttonCancel;
     private JTextField textFieldUsername;
     private JLabel usernameLabel;
+    private Controller controlador;
+    private FrmLogIn client;
 
 
     public FormUser() {
@@ -17,6 +21,7 @@ public class FormUser extends JDialog{
         getRootPane().setDefaultButton(buttonOK);
         setResizable(false);
         setTitle("LOG IN");
+        controlador = Controller.getInstance();
         this.setLocationRelativeTo(null);
         initComponents();
     }
@@ -53,8 +58,15 @@ public class FormUser extends JDialog{
     }
 
     private void onRegister() {
-        JOptionPane.showMessageDialog(this, "Usuari registrat correctament");
-        dispose();
+        try {
+            String username = textFieldUsername.getName();
+            String idClient = client.getClient();
+            controlador.addUsuari(idClient, username, username);
+            JOptionPane.showMessageDialog(this, "Usuari registrat correctament");
+            dispose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void onCancel() {

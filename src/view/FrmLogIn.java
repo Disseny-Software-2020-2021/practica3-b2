@@ -20,7 +20,7 @@ class FrmLogIn extends JDialog {
     private JLabel labelPassword;
     private JButton btnRegistrar;
     private Controller controlador;
-    public String idClient;
+    private String idClient;
     /**
      * Constructor de la finestra del LogIn on es fixa l'aspecte d'aquesta i s'inicialitzen els components
      */
@@ -34,6 +34,10 @@ class FrmLogIn extends JDialog {
         setResizable(false);
         this.setLocation(50, 50);
         setTitle("LOG IN");
+    }
+
+    public String getClient(){
+        return this.idClient;
     }
 
     /**
@@ -82,7 +86,7 @@ class FrmLogIn extends JDialog {
      */
     private void onOK() {
         try {
-            String idClient = textUsername.getText();
+            idClient = textUsername.getText();
             String psw = new String(textPassword.getPassword());
             if (this.controlador.LoginClient(idClient, psw)) {
                 String info = "Log-in correcte";
@@ -123,4 +127,5 @@ class FrmLogIn extends JDialog {
         dialog.pack();
         dialog.setVisible(true);
     }
+
 }

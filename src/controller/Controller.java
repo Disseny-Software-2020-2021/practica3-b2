@@ -5,6 +5,7 @@ import resources.service.AbstractFactoryData;
 import resources.service.DataService;
 import resources.service.FactoryMOCK;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -116,13 +117,12 @@ public class Controller {
         return post;
     }
 
-    public String catalegSeries(String nom) {
+    public List<String> catalegSeries() {
+        List<String>llista = new ArrayList<>();
         for (String ec : this.llistarCatalegSeries()) {
-            if (ec.equals(nom)) {
-                return "succes";
-            }
+            llista.add(ec);
         }
-        return "fail";
+        return llista;
 
 
     }

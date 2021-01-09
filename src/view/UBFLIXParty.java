@@ -43,7 +43,7 @@ public class UBFLIXParty extends JFrame {
     private HashMap<String, JPopupMenu> popupMenuTemporades;
     private DefaultTableModel tableModelVis;
     private DefaultTableModel tableModelVal;
-    public Controller controlador;
+    private Controller controlador;
     private String clientName;
 
 
@@ -218,7 +218,6 @@ public class UBFLIXParty extends JFrame {
         dialog.setVisible(true);
         jPanel.setVisible(true);
         refreshLlistes();
-        this.clientName = dialog.idClient;
     }
 
     /**
