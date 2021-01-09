@@ -422,7 +422,7 @@ public class Controller {
         return false;
     }
 
-    public boolean LoginClient(String idClient, String psw){
+    public boolean LoginClient(String idClient, String psw) throws Exception {
         return carteraClients.validLogin(idClient, psw);
     }
 }

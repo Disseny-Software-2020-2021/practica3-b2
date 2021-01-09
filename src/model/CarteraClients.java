@@ -41,11 +41,12 @@ public class CarteraClients {
         llista.add(client);
     }
 
-    public boolean validLogin(String idClient, String psw) {
+    public boolean validLogin(String idClient, String psw) throws Exception {
         Client client = this.find(idClient);
-        if (client.getPwd().equals(psw)) {
-            return true;
+        if(client != null) {
+            return client.getPwd().equals(psw);
+        }else{
+            throw new Exception("No existeix aquest nom de client");
         }
-        return false;
     }
 }

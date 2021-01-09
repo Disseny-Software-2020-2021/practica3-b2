@@ -78,6 +78,7 @@ class FrmLogIn extends JDialog {
                 onRegistrar();
             }
         });
+
     }
 
     /**
@@ -86,11 +87,12 @@ class FrmLogIn extends JDialog {
      */
     private void onOK() {
         try {
-            idClient = textUsername.getText();
+            String IdClient = textUsername.getText();
+            this.idClient = IdClient;
             String psw = new String(textPassword.getPassword());
-            if (this.controlador.LoginClient(idClient, psw)) {
+            if (this.controlador.LoginClient(IdClient, psw)) {
                 String info = "Log-in correcte";
-                this.idClient = idClient;
+                this.idClient = IdClient;
                 JOptionPane.showMessageDialog(this, info, "INFORMACIÓ LOG-IN", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
             }
