@@ -114,7 +114,7 @@ public class Client {
         if (this.usuaris.size() < 5) {
             return usuari;
         } else {
-            throw new Exception("Ja existeix aquest usuari");
+            throw new Exception("Ja hi han cinc usuaris creats");
         }
     }
 }
