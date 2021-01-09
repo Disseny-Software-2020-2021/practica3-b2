@@ -81,7 +81,12 @@ public class DataService {
 
     public void addUsuari(Usuari u) throws Exception {
         if(!usuariDAO.add(u)){
-            throw new Exception("aquest usuari ja existeix");
+            throw new Exception("Aquest nom d'usuari ja existeix");
+        }
+    }
+    public void addClient(Client c) throws Exception {
+        if(!clientDAO.add(c)){
+            throw new Exception("Aquest client ja te una compta de UBFlixParty");
         }
     }
 

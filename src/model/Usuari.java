@@ -17,7 +17,7 @@ public class Usuari {
     public Usuari(String idClient, String nom, String idUsuari) {
         this.idClient = idClient;
         this.nom = nom;
-        idUser = idUsuari;
+        this.idUser = idUsuari;
         icona = "Icona";
     }
 
@@ -31,6 +31,11 @@ public class Usuari {
 
     public String getName() {
         return nom;
+    }
+
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public void setName(String nom) {

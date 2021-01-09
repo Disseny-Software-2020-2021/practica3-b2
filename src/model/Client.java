@@ -101,6 +101,9 @@ public class Client {
     }
     public Usuari addUsuari(String idClient, String Nomusuari, String idUsuari) throws Exception {
         Usuari usuari = new Usuari(idClient, Nomusuari, idUsuari);
+        usuari.setIdClient(idClient);
+        usuari.setIdUser(idUsuari);
+        usuari.setNom(Nomusuari);
         if (this.usuaris.size() < 5) {
             return usuari;
         } else {
