@@ -427,8 +427,13 @@ public class Controller {
         return carteraClients.validLogin(idClient, psw);
     }
 
-    public List<Serie> getMyList(String idClient, String idUsuari) {
-        return carteraClients.find(idClient).findUserById(idUsuari).getMyList();
+    public List<String> getMyList(String idClient, String nom) {
+        List<String> llista = new ArrayList<>();
+        List<Serie> mylist = carteraClients.find(idClient).findUser(nom).getMyList();
+        for(Serie s: mylist){
+            llista.add(s.getTitol());
+        }
+        return llista;
 
     }
 

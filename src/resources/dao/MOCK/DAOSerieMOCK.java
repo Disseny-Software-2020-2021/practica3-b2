@@ -10,8 +10,9 @@ public class DAOSerieMOCK implements DAOSerie {
     private Map<String, Serie> idToSerie = new HashMap<>();
 
     public DAOSerieMOCK() {
-            idToSerie.put("Breaking Bad", new Serie("Breaking Bad", "Tras cumplir 50 años, Walter White..."));
-            idToSerie.put("Game of Thrones", new Serie( "Game of Thrones", "La historia se desarrolla..."));
+        idToSerie.put("Game of Thrones", new Serie( "Game of Thrones", "La historia se desarrolla..."));
+        idToSerie.put("Breaking Bad", new Serie("Breaking Bad", "Tras cumplir 50 años, Walter White..."));
+
     }
 
 

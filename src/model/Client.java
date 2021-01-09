@@ -76,6 +76,13 @@ public class Client {
         return null;
     }
 
+    public Usuari findUser(String nom)  {
+        for(Usuari u: usuaris){
+            if(u.getName().equals(nom)) return u;
+        }
+        return null;
+    }
+
     public boolean findUserByIdBool(String idUser)  {
         for(Usuari u: usuaris){
             if(u.getIdUser().equals(idUser)) return true;

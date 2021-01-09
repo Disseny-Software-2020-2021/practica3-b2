@@ -123,7 +123,7 @@ public class UBFLIXParty extends JFrame{
             }
         });
         popupMenuTemporades = new HashMap<>();
-        comboBoxUsuaris.addItem("Pol");
+        comboBoxUsuaris.addItem("Manuel");
         comboBoxUsuaris.addItem("Manuel");
         inicialitzarLlistaTopVisualitzacions();
         inicialitzarLlistaTopValoracions();
@@ -222,8 +222,8 @@ public class UBFLIXParty extends JFrame{
      * @param evt event que es dóna a l'obrir l'aplicació
      */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {
-        refreshListAll();
         ferLogIn();
+        refreshListAll();
     }
 
     /**
@@ -304,7 +304,7 @@ public class UBFLIXParty extends JFrame{
      * Mètode que actualitza les sèries de la llista MyList
      */
     private void refreshMyList() {
-        String[] series = {"serie 11", "serie 22", "serie 33"};
+        String[] series = controlador.getMyList("ajaleo",comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
         listMyList.setListData(series);
     }
 
