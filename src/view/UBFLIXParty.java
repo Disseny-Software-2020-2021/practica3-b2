@@ -123,9 +123,7 @@ public class UBFLIXParty extends JFrame{
             }
         });
         popupMenuTemporades = new HashMap<>();
-        comboBoxUsuaris.addItem("Usuari 1");
-        comboBoxUsuaris.addItem("Usuari 2");
-        comboBoxUsuaris.addItem("Usuari 3");
+        comboBoxUsuaris.addItem("Manuel");
         inicialitzarLlistaTopVisualitzacions();
         inicialitzarLlistaTopValoracions();
         controlador = Controller.getInstance();
@@ -242,7 +240,7 @@ public class UBFLIXParty extends JFrame{
      * Mètode que actualitza les sèries del catàleg
      */
     private void refreshListAll() {
-        String[] series = {"serie 1","serie 2", "serie 3"};
+        String[] series = controlador.catalegSeries().toArray(new String[0]);
         listAll.setListData(series);
         refreshTemporades(series);
     }
@@ -255,7 +253,7 @@ public class UBFLIXParty extends JFrame{
         popupMenuTemporades.clear();
         for (String serie: series) {
             JPopupMenu s = new JPopupMenu();
-            String[] temporades = {"temporada 1","temporada 2", "temporada 3"};
+            String[] temporades = controlador.getTemporades(serie).toArray(new String[0]);
             for (String temporada: temporades) {
                 JMenu temp = new JMenu(temporada);
                 refreshEpisodis(serie, temporada, temp);
@@ -272,13 +270,14 @@ public class UBFLIXParty extends JFrame{
      * @param jm JMenu de l'episodi
      */
     private void refreshEpisodis(String serie, String temporada, JMenu jm) {
-        String[] episodis = {"episodi 1","episodi 2", "episodi 3"};
+        String[] episodis = controlador.getEpisodis(serie, temporada).toArray(new String[0]);
+        int cont = 1;
         for (String episodi: episodis) {
-            String idSerie = "Id Serie";
-            int numTemporada = Integer.parseInt(temporada.substring(10));
-            int duracio = 30;
+            String idSerie = serie;
+            int numTemporada = cont;
+            int duracio = controlador.getMinTotals(serie,temporada,episodi);
             int duracioVisualitzada = 0;
-            String descripcio = "Descripcio de l'episodi";
+            String descripcio = controlador.mostrarDetallsSerie(serie);
             JMenuItem ep = new JMenuItem(episodi);
             ep.addActionListener(new ActionListener() {
                 @Override
@@ -287,6 +286,7 @@ public class UBFLIXParty extends JFrame{
                 }
             });
             jm.add(ep);
+            cont++;
         }
     }
 
@@ -305,7 +305,7 @@ public class UBFLIXParty extends JFrame{
      * Mètode que actualitza les sèries de la llista MyList
      */
     private void refreshMyList() {
-        String[] series = {"serie 11", "serie 22", "serie 33"};
+        String[] series = controlador.getMyList("ajaleo",comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
         listMyList.setListData(series);
     }
 
