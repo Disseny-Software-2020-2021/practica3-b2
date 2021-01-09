@@ -22,7 +22,7 @@ public class DAOTemporadaMOCK implements DAOTemporada {
         temporades_2.add(new Temporada("Game of Thrones", "Game of Thrones: temporada 1"));
         temporades_2.add(new Temporada("Game of Thrones", "Game of Thrones: temporada 2"));
         temporades_2.add(new Temporada("Game of Thrones", "Game of Thrones: temporada 3"));
-        idToTemporades.put("Breaking Bad", temporades_1);
+        idToTemporades.put("Game of Thrones", temporades_2);
     }
 
     @Override

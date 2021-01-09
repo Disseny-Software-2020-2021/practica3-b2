@@ -50,7 +50,7 @@ class FormEpisodi extends JDialog{
         setMaximumSize(new Dimension(600, 400));
 
         titolEpisodi.setText("<html><u> Títol de l'episodi:</u> " + " "+ "<html></u> " + titol);
-        duracioEpisodi.setText("<html><u> Duració:</u> " + duracio + " segons");
+        duracioEpisodi.setText("<html><u> Duració:</u> " + duracio + " minuts");
         descripcioEpisodi.setText("<html><body style=' width: 300 px'>"+"<html><u> Descripció:</u> " + descripcio);
         valorarButton.setEnabled(estaVisualitzat(idSerie, numTemporada, titol));
         tornarAlMenuButton.addActionListener(new ActionListener() {

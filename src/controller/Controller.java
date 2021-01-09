@@ -261,13 +261,14 @@ public class Controller {
         return "Client no correcte";
     }
 
-    public String mostrarDetallsSerie(String nomSerie) throws Exception {
+    public String mostrarDetallsSerie(String nomSerie){
         for (Serie serie : llistaSeries.getLlista()) {
             if (serie.getTitol().equals(nomSerie)) {
                 return serie.getDescripcio();
             }
         }
-        throw new Exception("Error");
+        return "Error";
+        //throw new Exception("Error");
     }
 
     public String llistarFollowing(String idClient, String idUsuari, String idUser) {
@@ -424,5 +425,53 @@ public class Controller {
 
     public boolean LoginClient(String idClient, String psw){
         return carteraClients.validLogin(idClient, psw);
+    }
+
+    public List<Serie> getMyList(String idClient, String idUsuari) {
+        return carteraClients.find(idClient).findUserById(idUsuari).getMyList();
+
+    }
+
+    public List<Usuari> getUsuaris(String idClient) {
+        return carteraClients.find(idClient).getUsuaris();
+
+    }
+
+    public List<String> getTemporades(String idSerie) {
+        List<String> llista = new ArrayList<>();
+        List<Temporada> temporades = llistaSeries.find(idSerie).getTemporades();
+        for(Temporada t: temporades){
+            llista.add(t.getIdTemporada());
+        }
+        return llista;
+    }
+
+    public List<String> getEpisodis(String idSerie, String temporada) {
+        List<String> llista = new ArrayList<>();
+        List<Temporada> temporades = llistaSeries.find(idSerie).getTemporades();
+        for(Temporada t: temporades){
+            if(t.getIdTemporada().equals(temporada)){
+                List<Episodi> episodis = t.getEpisodis();
+                for(Episodi e: episodis){
+                    llista.add(e.getIdEpisodi());
+                }
+            }
+        }
+        return llista;
+    }
+
+    public int getMinTotals(String idSerie, String temporada, String episodi){
+        List<Temporada> temporades = llistaSeries.find(idSerie).getTemporades();
+        for(Temporada t: temporades){
+            if(t.getIdTemporada().equals(temporada)){
+                List<Episodi> episodis = t.getEpisodis();
+                for(Episodi e: episodis){
+                    if(e.getIdEpisodi().equals(episodi)){
+                        return e.getMinutstotals();
+                    }
+                }
+            }
+        }
+        return 0;
     }
 }
