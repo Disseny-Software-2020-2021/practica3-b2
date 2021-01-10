@@ -596,4 +596,9 @@ public class Controller {
     public float valoracio(String serie){
         return llistaSeries.find(serie).getMitjaValoracio();
     }
+
+    public void setMyList(String idClient, String nom, String serie){
+        List<Serie> mylist = carteraClients.find(idClient).findUser(nom).getMyList();
+        mylist.add(llistaSeries.find(serie));
+    }
 }

@@ -86,6 +86,8 @@ public class UBFLIXParty extends JFrame{
         btnAfegirMyList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                addMyList();
+                refreshLlistes();
                 JOptionPane.showMessageDialog(jPanel, "Serie afegida a My List!");
             }
         });
@@ -304,6 +306,9 @@ public class UBFLIXParty extends JFrame{
         refreshTopVisualitzacions();
     }
 
+    /**
+     * Mètode que serveix per actualitzar totes el combobox
+     */
     private void refreshComboBox() {
         List<Usuari> usuaris = controlador.getUsuaris(NomClient);
         for(Usuari u: usuaris){
@@ -377,5 +382,12 @@ public class UBFLIXParty extends JFrame{
         FormEpisodi dialog = new FormEpisodi(idSerie, temporada, episodi, duracio, descripcio);
         dialog.pack();
         dialog.setVisible(true);
+    }
+
+    /**
+     * Mètode que afegeix serie a MyList
+     */
+    private void addMyList() {
+        controlador.setMyList(NomClient, comboBoxUsuaris.getSelectedItem().toString(), listAll.getSelectedValue().toString());
     }
 }
