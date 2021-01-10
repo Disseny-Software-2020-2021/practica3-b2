@@ -12,18 +12,21 @@ public class DAOWatchingMOCK implements DAOWatching {
     public DAOWatchingMOCK() {
         // Watching pel usuari "Pol"
         ArrayList<Watching> watching_1 = new ArrayList<>();
-        watching_1.add(new Watching("Breaking Bad", "Breaking Bad: temporada 1", "BB: temporada 1: episodi 1","Acabat"));
-        watching_1.add(new Watching("Breaking Bad", "Breaking Bad: temporada 1", "BB: temporada 1: episodi 2","2 0"));
-        watching_1.add(new Watching("Game of Thrones", "Game of Thrones: temporada 1", "GoT: temporada 1: episodi 1","Acabat"));
+        watching_1.add(new Watching("Vikings", "Vikings: temporada 1", "V: temporada 1: episodi 1","Acabat"));
+        watching_1.add(new Watching("Vikings", "Vikings: temporada 1", "V: temporada 1: episodi 2","Acabat"));
+        watching_1.add(new Watching("Breaking Bad", "Breaking Bad: temporada 1", "BB: temporada 1: episodi 1","23"));
         watching.put("Pol", watching_1);
 
         // Watching pel usuari "Manuel"
         ArrayList<Watching> watching_2 = new ArrayList<>();
-        watching_2.add(new Watching("Breaking Bad", "Breaking Bad: temporada 1", "BB: temporada 1: episodi 1","23"));
         watching.put("Manuel", watching_2);
 
         // Watching pel usuari "Marc"
         ArrayList<Watching> watching_3 = new ArrayList<>();
+        watching_3.add(new Watching("Breaking Bad", "Breaking Bad: temporada 1", "BB: temporada 1: episodi 1","Acabat"));
+        watching_3.add(new Watching("Breaking Bad", "Breaking Bad: temporada 1", "BB: temporada 1: episodi 2","20"));
+        watching_3.add(new Watching("Game of Thrones", "Game of Thrones: temporada 1", "GoT: temporada 1: episodi 1","Acabat"));
+        watching_3.add(new Watching("Game of Thrones", "Game of Thrones: temporada 1", "GoT: temporada 1: episodi 2","Acabat"));
         watching.put("Marc", watching_3);
 
         // Watching pel usuari "Laura"
@@ -32,10 +35,17 @@ public class DAOWatchingMOCK implements DAOWatching {
 
         // Watching pel usuari "Marco"
         ArrayList<Watching> watching_5 = new ArrayList<>();
+        watching_4.add(new Watching("Breaking Bad", "Breaking Bad: temporada 1", "BB: temporada 1: episodi 1","Acabat"));
+        watching_4.add(new Watching("Breaking Bad", "Breaking Bad: temporada 1", "BB: temporada 1: episodi 2","20"));
+        watching_4.add(new Watching("Game of Thrones", "Game of Thrones: temporada 1", "GoT: temporada 1: episodi 1","Acabat"));
+        watching_4.add(new Watching("Game of Thrones", "Game of Thrones: temporada 1", "GoT: temporada 1: episodi 2","Acabat"));
         watching.put("Marco", watching_5);
 
         // Watching pel usuari "Ignasi"
         ArrayList<Watching> watching_6 = new ArrayList<>();
+        watching_6.add(new Watching("Vikings", "Vikings: temporada 1", "V: temporada 1: episodi 1","Acabat"));
+        watching_6.add(new Watching("Vikings", "Vikings: temporada 1", "V: temporada 1: episodi 2","Acabat"));
+        watching_6.add(new Watching("Breaking Bad", "Breaking Bad: temporada 1", "BB: temporada 1: episodi 1","25"));
         watching.put("Ignasi", watching_6);
     }
 

@@ -487,4 +487,32 @@ public class Controller {
         }
         return 0;
     }
+
+    public List<String> getWatched(String idClient, String nom){
+        List<String> llista = new ArrayList<>();
+        List<Watching> watched = carteraClients.find(idClient).findUser(nom).getWatching();
+        for(Watching w: watched){
+            Serie s = llistaSeries.find(w.getIdSerie());
+            if(w.getIdTemporada().equals(s.getTemporada(s.getTemporades().size()-1).getIdTemporada())){  // Ultima temporada
+                Temporada t = llistaSeries.find(w.getIdSerie()).find(w.getIdTemporada());
+                if(w.getIdEpisodi().equals(t.getEpisodi(t.getEpisodis().size()-1).getIdEpisodi())){  // Ultim episodi
+                    if(w.getNumMinuts().equals("Acabat")){  // Esta acabat
+                        llista.add(w.getIdSerie());
+                    }
+                }
+            }
+        }
+        return llista;
+    }
+
+    public List<String> getWatching(String idClient, String nom){
+        List<String> llista = new ArrayList<>();
+        List<Watching> watched = carteraClients.find(idClient).findUser(nom).getWatching();
+        for(Watching w: watched){
+            if(!w.getNumMinuts().equals("Acabat")){  // No esta acabat
+                llista.add(w.getIdSerie());
+            }
+        }
+        return llista;
+    }
 }

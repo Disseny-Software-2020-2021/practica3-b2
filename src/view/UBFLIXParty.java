@@ -126,7 +126,7 @@ public class UBFLIXParty extends JFrame{
             }
         });
         popupMenuTemporades = new HashMap<>();
-        comboBoxUsuaris.addItem("Manuel");
+        comboBoxUsuaris.addItem("Pol");
         inicialitzarLlistaTopVisualitzacions();
         inicialitzarLlistaTopValoracions();
     }
@@ -307,7 +307,7 @@ public class UBFLIXParty extends JFrame{
      * Mètode que actualitza les sèries de la llista MyList
      */
     private void refreshMyList() {
-        String[] series = controlador.getMyList("ajaleo", comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
+        String[] series = controlador.getMyList(NomClient, comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
         listMyList.setListData(series);
     }
 
@@ -315,7 +315,7 @@ public class UBFLIXParty extends JFrame{
      * Mètode que actualitza les sèries de la llista Watched
      */
     private void refreshWatched() {
-        String[] series = {"serie 21", "serie 22", "serie 23"};
+        String[] series = controlador.getWatched(NomClient, comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
         listWatched.setListData(series);
     }
 
@@ -323,7 +323,7 @@ public class UBFLIXParty extends JFrame{
      * Mètode que actualitza les sèries de la llista ContinueWatching
      */
     private void refreshContinueWatching() {
-        String[] series = {"serie 31", "serie 32", "serie 33"};
+        String[] series = controlador.getWatching(NomClient, comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
         listContinueWatching.setListData(series);
     }
 

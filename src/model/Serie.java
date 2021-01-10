@@ -34,4 +34,17 @@ public class Serie {
     public void setTemporades(List<Temporada> temporades) {
         this.temporades = temporades;
     }
+
+    public Temporada find(String temporada) {
+
+        for (Temporada t: temporades) {
+            if (t.getIdTemporada().equals(temporada)) return t;
+        }
+        return null;
+
+    }
+
+    public Temporada getTemporada(int num) {
+        return temporades.get(num);
+    }
 }
