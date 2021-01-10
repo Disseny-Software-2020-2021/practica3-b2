@@ -128,7 +128,7 @@ public class Client {
             usuari.setNom(Nomusuari);
             return usuari;
         } else {
-            throw new Exception("Ja hi han cinc usuaris creats");
+            throw new Exception("Ja existeix aquest usuari");
         }
     }
 }

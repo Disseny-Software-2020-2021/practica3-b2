@@ -20,7 +20,7 @@ public class FormUser extends JDialog{
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
         setResizable(false);
-        setTitle("Usuari nou");
+        setTitle("LOG IN");
         controlador = Controller.getInstance();
         this.setLocationRelativeTo(null);
         initComponents();
@@ -28,11 +28,6 @@ public class FormUser extends JDialog{
     public void setClient(String nom){
         this.client = nom;
     }
-
-    public void setClient(String nom){
-        this.client = nom;
-    }
-
 
     private void initComponents() {
         buttonOK.addActionListener(new ActionListener() {
@@ -67,12 +62,12 @@ public class FormUser extends JDialog{
 
     private void onRegister() {
         try {
-            String username = textFieldUsername.getText();
+            String username = textFieldUsername.getName();
             controlador.addUsuari(this.client, username, username);
             JOptionPane.showMessageDialog(this, "Usuari registrat correctament");
             dispose();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR AL REGISTRAR", JOptionPane.YES_NO_OPTION);
+            e.printStackTrace();
         }
     }
 
