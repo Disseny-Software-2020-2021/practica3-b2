@@ -25,6 +25,9 @@ public class FormUser extends JDialog{
         this.setLocationRelativeTo(null);
         initComponents();
     }
+    public void setClient(String nom){
+        this.client = nom;
+    }
 
     public void setClient(String nom){
         this.client = nom;
