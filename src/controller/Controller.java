@@ -33,9 +33,13 @@ public class Controller {
         }
     }
 
-    public static Controller getInstance(){
+    public static Controller getInstance(){ // Thread safe and lazy initialization
         if (instancia == null) {
-            instancia = new Controller();
+            synchronized (Controller.class){
+                if (instancia == null) {
+                    instancia = new Controller();
+                }
+            }
         }
         return instancia;
     }
@@ -510,7 +514,9 @@ public class Controller {
         List<Watching> watched = carteraClients.find(idClient).findUser(nom).getWatching();
         for(Watching w: watched){
             if(!w.getNumMinuts().equals("Acabat")){  // No esta acabat
-                llista.add(w.getIdSerie());
+                if(!llista.contains(w.getIdSerie())){
+                    llista.add(w.getIdSerie());
+                }
             }
         }
         return llista;

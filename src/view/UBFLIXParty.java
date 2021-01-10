@@ -126,7 +126,6 @@ public class UBFLIXParty extends JFrame{
             }
         });
         popupMenuTemporades = new HashMap<>();
-        comboBoxUsuaris.addItem("Pol");
         inicialitzarLlistaTopVisualitzacions();
         inicialitzarLlistaTopValoracions();
     }
@@ -217,6 +216,7 @@ public class UBFLIXParty extends JFrame{
         dialog.setVisible(true);
         this.NomClient = dialog.getClient();
         jPanel.setVisible(true);
+        comboBoxUsuaris.removeAll();
         refreshLlistes();
     }
 
@@ -225,8 +225,8 @@ public class UBFLIXParty extends JFrame{
      * @param evt event que es dóna a l'obrir l'aplicació
      */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {
-        refreshListAll();
         ferLogIn();
+        refreshListAll();
     }
 
     /**
@@ -296,11 +296,20 @@ public class UBFLIXParty extends JFrame{
      * Mètode que serveix per actualitzar totes les llistes de la vista
      */
     private void refreshLlistes() {
+        refreshComboBox();
         refreshWatched();
         refreshMyList();
         refreshContinueWatching();
         refreshTopValoracions();
         refreshTopVisualitzacions();
+    }
+
+    private void refreshComboBox() {
+        comboBoxUsuaris.removeAll();
+        List<Usuari> usuaris = controlador.getUsuaris(NomClient);
+        for(Usuari u: usuaris){
+            comboBoxUsuaris.addItem(u.getName());
+        }
     }
 
     /**
