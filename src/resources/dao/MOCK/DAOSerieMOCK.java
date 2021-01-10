@@ -10,9 +10,9 @@ public class DAOSerieMOCK implements DAOSerie {
     private Map<String, Serie> idToSerie = new HashMap<>();
 
     public DAOSerieMOCK() {
-        idToSerie.put("Vikings", new Serie( "Vikings", "Está inspirada en las sagas del vikingo Ragnar Lodbrok, uno de los héroes nórdicos legendarios..."));
-        idToSerie.put("Game of Thrones", new Serie( "Game of Thrones", "La historia se desarrolla..."));
-        idToSerie.put("Breaking Bad", new Serie("Breaking Bad", "Tras cumplir 50 años, Walter White..."));
+        idToSerie.put("Game of Thrones", new Serie( "Game of Thrones", "La historia se desarrolla...",60));
+        idToSerie.put("Vikings", new Serie( "Vikings", "Está inspirada en las sagas del vikingo Ragnar Lodbrok, uno de los héroes nórdicos legendarios...",40));
+        idToSerie.put("Breaking Bad", new Serie("Breaking Bad", "Tras cumplir 50 años, Walter White...",70));
 
     }
 

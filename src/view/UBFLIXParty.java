@@ -305,7 +305,6 @@ public class UBFLIXParty extends JFrame{
     }
 
     private void refreshComboBox() {
-        comboBoxUsuaris.removeAll();
         List<Usuari> usuaris = controlador.getUsuaris(NomClient);
         for(Usuari u: usuaris){
             comboBoxUsuaris.addItem(u.getName());
@@ -344,7 +343,7 @@ public class UBFLIXParty extends JFrame{
         int numRows = tableModelVal.getRowCount();
         for (int i = numRows - 1; i >= 0; i--)
             tableModelVal.removeRow(i);
-        String [] topTenVal = {"serie 1", "serie 2", "serie 3", "serie 4", "serie 5", "serie 6", "serie 7", "serie 8", "serie 9", "serie 10"};
+        String [] topTenVal = controlador.getTop10Val().toArray(new String[0]);
         for (String serie: topTenVal) {
             tableModelVal.addRow(new String[]{serie, String.format("%.2f", 5.7)});
         }
@@ -359,9 +358,9 @@ public class UBFLIXParty extends JFrame{
         for (int i = numRows - 1; i >= 0; i--)
             tableModelVis.removeRow(i);
 
-        String [] topTenVisualitzacions = {"serie 1", "serie 2", "serie 3", "serie 4", "serie 5", "serie 6", "serie 7", "serie 8", "serie 9", "serie 10"};
+        String [] topTenVisualitzacions = controlador.getTop10Views().toArray(new String[0]);
         for (String serie: topTenVisualitzacions) {
-            tableModelVis.addRow(new Object[]{serie, 10});
+            tableModelVis.addRow(new Object[]{serie, controlador.visualitzacions(serie)});
         }
     }
 

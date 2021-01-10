@@ -125,8 +125,6 @@ public class Controller {
             llista.add(ec);
         }
         return llista;
-
-
     }
 
     public String catalegPosts(String nom) {
@@ -514,11 +512,66 @@ public class Controller {
         List<Watching> watched = carteraClients.find(idClient).findUser(nom).getWatching();
         for(Watching w: watched){
             if(!w.getNumMinuts().equals("Acabat")){  // No esta acabat
-                if(!llista.contains(w.getIdSerie())){
+                if(!llista.contains(w.getIdSerie())){ // No esta la serie a llista
                     llista.add(w.getIdSerie());
                 }
             }
         }
+        return llista;
+    }
+
+    public Iterable<Integer> llistarSeriesViews() {
+        SortedSet<Integer> views = new TreeSet<>();
+        if (llistaSeries.getLlista().isEmpty()) {
+            views.add(0);
+        } else {
+            for (Serie s : llistaSeries.getLlista()) {
+                views.add(s.getVisualitzacio());
+            }
+        }
+        return views;
+    }
+
+    public List<String> getTop10Views() {
+        List<String>llista = new ArrayList<>();
+        for (Integer views : this.llistarSeriesViews()) {
+            List<Serie> series = llistaSeries.getLlista();
+            for(Serie s: series){
+                if(s.getVisualitzacio() == views){
+                    llista.add(s.getTitol());
+                }
+            }
+        }
+        Collections.reverse(llista);
+        return llista;
+    }
+
+    public int visualitzacions(String serie){
+        return llistaSeries.find(serie).getVisualitzacio();
+    }
+
+    public Iterable<Float> llistarSeriesVal() {
+        SortedSet<Float> valoracions = new TreeSet<>();
+        if (llistaSeries.getLlista().isEmpty()) {
+        } else {
+            for (Serie s : llistaSeries.getLlista()) {
+                valoracions.add(s.getMitjaValoracio());
+            }
+        }
+        return valoracions;
+    }
+
+    public List<String> getTop10Val(){
+        List<String>llista = new ArrayList<>();
+        for (Float valoracions : this.llistarSeriesVal()) {
+            List<Serie> series = llistaSeries.getLlista();
+            for(Serie s: series){
+                if(s.getMitjaValoracio() != 0){
+                    llista.add(s.getTitol());
+                }
+            }
+        }
+        Collections.reverse(llista);
         return llista;
     }
 }

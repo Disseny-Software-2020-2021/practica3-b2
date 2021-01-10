@@ -11,13 +11,13 @@ public class DAOMyListMOCK implements DAOMyList {
     public DAOMyListMOCK(){
         // Series pel usuari "Pol"
         ArrayList<Serie> mylist_1 = new ArrayList<>();
-        mylist_1.add(new Serie("Breaking Bad", "Tras cumplir 50 años, Walter White..."));
-        mylist_1.add(new Serie("Game of Thrones", "La historia se desarrolla..."));
+        mylist_1.add(new Serie("Breaking Bad", "Tras cumplir 50 años, Walter White...",70));
+        mylist_1.add(new Serie("Game of Thrones", "La historia se desarrolla...",60));
         mylist.put("Pol", mylist_1);
 
         // Series pel usuari "Manuel"
         ArrayList<Serie> mylist_2 = new ArrayList<>();
-        mylist_2.add(new Serie("Breaking Bad", "Tras cumplir 50 años, Walter White..."));
+        mylist_2.add(new Serie("Breaking Bad", "Tras cumplir 50 años, Walter White...",70));
         mylist.put("Manuel", mylist_2);
 
         // Series pel usuari "Marc"
@@ -26,7 +26,7 @@ public class DAOMyListMOCK implements DAOMyList {
 
         // Series pel usuari "Laura"
         ArrayList<Serie> mylist_4 = new ArrayList<>();
-        mylist_4.add(new Serie("Game of Thrones", "La historia se desarrolla..."));
+        mylist_4.add(new Serie("Game of Thrones", "La historia se desarrolla...",60));
         mylist.put("Laura", mylist_4);
 
         // Series pel usuari "Marco"
@@ -117,7 +117,7 @@ public class DAOMyListMOCK implements DAOMyList {
                     return "Ja estava marcada";
                 }
             }
-            series.add(new Serie(serie.getTitol(), serie.getDescripcio()));
+            series.add(new Serie(serie.getTitol(), serie.getDescripcio(), serie.getVisualitzacio()));
             mylist.put(usuari.getName(), (ArrayList<Serie>) series);
             return "Marcada";
         }
