@@ -17,6 +17,7 @@ public class Controller {
     private List<Post> llistaPosts;
     private List<ValoracioEstrella> valoracionsEstrella;
     private List<ValoracioThumb> valoracionsThumb;
+    private String nomClient;
 
     private Controller() {
         factory = new FactoryMOCK();
@@ -142,8 +143,6 @@ public class Controller {
         }
         if ((carteraClients.find(idClient) == null) && (Client.isValidPassword(psw)) && (carteraClients.find_id(dni) == null)) {
             carteraClients.addClient(idClient, psw, dni, adress, vip);
-            //List<Usuari> listausuaris = Collections.emptyList();
-            //carteraClients.find(idClient).setUsuaris(listausuaris);
             this.dataService.addClient(carteraClients.find(idClient));
         } else {
             throw new Exception("Error");
