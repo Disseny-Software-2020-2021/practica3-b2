@@ -122,7 +122,6 @@ public class Client {
             usuari.setIdUser(idUsuari);
             usuari.setNom(Nomusuari);
             this.usuaris = new ArrayList<Usuari>();
-            this.usuaris.add(usuari);
             return usuari;
         }
         else if (this.usuaris.size() < 5) {
@@ -131,12 +130,15 @@ public class Client {
             }
             Usuari usuari = new Usuari(idClient, Nomusuari, idUsuari);
             usuari.setIdClient(idClient);
-            this.usuaris.add(usuari);
             usuari.setIdUser(idUsuari);
             usuari.setNom(Nomusuari);
             return usuari;
         } else {
-            throw new Exception("Ja existeix aquest usuari");
+            throw new Exception("El numero d'usuaris ja es cinc");
         }
+    }
+    public void addlist(Usuari u){
+        this.usuaris.add(u);
+        System.out.println(this.usuaris.size());
     }
 }

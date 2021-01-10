@@ -155,7 +155,7 @@ public class Controller {
 
     public void addUsuari(String idClient, String nom, String idusuari) throws Exception {
         Usuari u = this.carteraClients.find(idClient).addUsuari(idClient, nom, idusuari);
-        this.dataService.addUsuari(u);
+        this.carteraClients.find(idClient).addlist(u);
     }
 
     public boolean isValidPassword(String psw) {

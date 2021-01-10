@@ -225,8 +225,8 @@ public class UBFLIXParty extends JFrame{
      * @param evt event que es dóna a l'obrir l'aplicació
      */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {
-        ferLogIn();
         refreshListAll();
+        ferLogIn();
     }
 
     /**
