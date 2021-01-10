@@ -14,14 +14,17 @@ public class DAOValoracioEstrellaMOCK implements DAOValoracioEstrella{
         valoracions_1.add(new ValoracioEstrella( "BB: temporada 2: episodi 2", 4));
         valoracions_1.add(new ValoracioEstrella( "GoT: temporada 1: episodi 2", 3));
         valoracions_1.add(new ValoracioEstrella( "GoT: temporada 3: episodi 1", 2));
+        valoracions_1.add(new ValoracioEstrella( "V: temporada 1: episodi 1", 5));
+        valoracions_1.add(new ValoracioEstrella( "V: temporada 1: episodi 2", 5));
         listValoracions.put("Pol",valoracions_1);
         // Valoracions per a l'usuari Marco
         ArrayList<ValoracioEstrella> valoracions_2 = new ArrayList<>();
         valoracions_2.add(new ValoracioEstrella("BB: temporada 1: episodi 2", 1));
         valoracions_2.add(new ValoracioEstrella( "BB: temporada 2: episodi 1", 3));
         valoracions_2.add(new ValoracioEstrella( "GoT: temporada 1: episodi 1", 3));
-        valoracions_2.add(new ValoracioEstrella( "GoT: temporada 3: episodi 3", 5));
-        listValoracions.put("Marco",valoracions_1);
+        valoracions_2.add(new ValoracioEstrella( "V: temporada 1: episodi 1", 5));
+        valoracions_2.add(new ValoracioEstrella( "V: temporada 1: episodi 2", 5));
+        listValoracions.put("Marco",valoracions_2);
     }
 
     @Override

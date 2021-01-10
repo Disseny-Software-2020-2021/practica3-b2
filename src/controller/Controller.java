@@ -551,11 +551,29 @@ public class Controller {
     }
 
     public Iterable<Float> llistarSeriesVal() {
+        float mitja = 0;
+        int cont = 0;
         SortedSet<Float> valoracions = new TreeSet<>();
         if (llistaSeries.getLlista().isEmpty()) {
-        } else {
-            for (Serie s : llistaSeries.getLlista()) {
-                valoracions.add(s.getMitjaValoracio());
+            valoracions.add((float) 0);
+        }else {
+            for (Serie s : llistaSeries.getLlista()) { // series
+                mitja = 0;
+                cont = 0;
+                for (Temporada t : s.getTemporades()) {
+                    for (Episodi e : t.getEpisodis()) {
+                        for (ValoracioEstrella val : this.valoracionsEstrella) {
+                            if (e.getIdEpisodi().equals(val.getEpisodi())) {
+                                mitja += val.getValoracio();
+                                cont++;
+                            }
+
+                        }
+                    }
+                    mitja = mitja / (float) cont;
+                    s.setMitjaValoracio(mitja);
+                    valoracions.add((float) mitja);
+                }
             }
         }
         return valoracions;
@@ -566,12 +584,16 @@ public class Controller {
         for (Float valoracions : this.llistarSeriesVal()) {
             List<Serie> series = llistaSeries.getLlista();
             for(Serie s: series){
-                if(s.getMitjaValoracio() != 0){
+                if(s.getMitjaValoracio() == valoracions){
                     llista.add(s.getTitol());
                 }
             }
         }
         Collections.reverse(llista);
         return llista;
+    }
+
+    public float valoracio(String serie){
+        return llistaSeries.find(serie).getMitjaValoracio();
     }
 }

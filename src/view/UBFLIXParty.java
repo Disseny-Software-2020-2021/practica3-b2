@@ -345,7 +345,7 @@ public class UBFLIXParty extends JFrame{
             tableModelVal.removeRow(i);
         String [] topTenVal = controlador.getTop10Val().toArray(new String[0]);
         for (String serie: topTenVal) {
-            tableModelVal.addRow(new String[]{serie, String.format("%.2f", 5.7)});
+            tableModelVal.addRow(new String[]{serie, String.format("%.2f", controlador.valoracio(serie))});
         }
     }
 
