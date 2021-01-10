@@ -43,6 +43,12 @@ public class DAOEpisodiMOCK implements DAOEpisodi {
         episodis_5.add(new Episodi("Game of Thrones: temporada 3", "GoT: temporada 3: episodi 2", 43));
         episodis_5.add(new Episodi("Game of Thrones: temporada 3", "GoT: temporada 3: episodi 3", 25));
         idToEpisodis.put("Game of Thrones: temporada 3", episodis_5);
+
+        // Episodis per a la temporada 1 de la serie Vikings
+        ArrayList<Episodi> episodis_6 = new ArrayList<>();
+        episodis_6.add(new Episodi("Vikings: temporada 1", "V: temporada 1: episodi 1",40));
+        episodis_6.add(new Episodi("Vikings: temporada 1", "V: temporada 1: episodi 2", 43));
+        idToEpisodis.put("Vikings: temporada 1", episodis_6);
     }
 
 

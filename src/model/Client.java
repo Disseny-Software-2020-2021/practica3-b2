@@ -70,6 +70,14 @@ public class Client {
         return this.usuaris;
     }
 
+    public List<String> getUsuarisString() {
+        List<String> UsuarisString = new ArrayList<String>();
+        for (Usuari u: usuaris){
+            UsuarisString.add(u.getName());
+        }
+        return UsuarisString;
+    }
+
     public Usuari findUserById(String idUser)  {
         for(Usuari u: usuaris){
             if(u.getIdUser().equals(idUser)) return u;
