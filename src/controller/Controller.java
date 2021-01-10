@@ -445,6 +445,11 @@ public class Controller {
 
     }
 
+    public List<String> getUsuarisString(String idClient) {
+        return carteraClients.find(idClient).getUsuarisString();
+
+    }
+
     public List<String> getTemporades(String idSerie) {
         List<String> llista = new ArrayList<>();
         List<Temporada> temporades = llistaSeries.find(idSerie).getTemporades();

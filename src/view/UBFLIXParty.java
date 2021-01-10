@@ -161,7 +161,7 @@ public class UBFLIXParty extends JFrame{
         dialog.setClient(this.NomClient);
         dialog.pack();
         dialog.setVisible(true);
-
+        this.comboBoxUsuaris.addItem(dialog.getUsuari());
     }
 
     /**
@@ -215,9 +215,9 @@ public class UBFLIXParty extends JFrame{
         FrmLogIn dialog = new FrmLogIn();
         dialog.pack();
         dialog.setVisible(true);
+        this.NomClient = dialog.getClient();
         jPanel.setVisible(true);
         refreshLlistes();
-        NomClient = dialog.getClient();
     }
 
     /**
@@ -370,6 +370,4 @@ public class UBFLIXParty extends JFrame{
         dialog.pack();
         dialog.setVisible(true);
     }
-
-
 }

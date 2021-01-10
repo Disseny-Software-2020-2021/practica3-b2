@@ -13,6 +13,7 @@ public class FormUser extends JDialog{
     private JLabel usernameLabel;
     private Controller controlador;
     private String client;
+    private String usuari;
 
 
     public FormUser() {
@@ -66,6 +67,7 @@ public class FormUser extends JDialog{
         try {
             String username = textFieldUsername.getText();
             controlador.addUsuari(this.client, username, username);
+            this.setUsuari(username);
             JOptionPane.showMessageDialog(this, "Usuari registrat correctament");
             dispose();
         } catch (Exception e) {
@@ -75,5 +77,13 @@ public class FormUser extends JDialog{
 
     private void onCancel() {
         dispose();
+    }
+
+    public String getUsuari(){
+        return this.usuari;
+    }
+
+    public void setUsuari(String username){
+        this.usuari = username;
     }
 }
