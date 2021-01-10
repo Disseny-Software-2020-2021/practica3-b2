@@ -126,7 +126,6 @@ public class UBFLIXParty extends JFrame{
             }
         });
         popupMenuTemporades = new HashMap<>();
-        comboBoxUsuaris.addItem("Pol");
         inicialitzarLlistaTopVisualitzacions();
         inicialitzarLlistaTopValoracions();
     }
