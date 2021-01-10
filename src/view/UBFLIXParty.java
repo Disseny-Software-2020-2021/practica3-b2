@@ -45,7 +45,7 @@ public class UBFLIXParty extends JFrame{
     private HashMap<String, JPopupMenu> popupMenuTemporades;
     private DefaultTableModel tableModelVis;
     private DefaultTableModel tableModelVal;
-    private Controller controlador;
+    private Controller controlador = Controller.getInstance();
     private String NomClient;
 
 
@@ -129,7 +129,6 @@ public class UBFLIXParty extends JFrame{
         comboBoxUsuaris.addItem("Manuel");
         inicialitzarLlistaTopVisualitzacions();
         inicialitzarLlistaTopValoracions();
-        controlador = Controller.getInstance();
     }
 
     private void mostrarPerfil() {
