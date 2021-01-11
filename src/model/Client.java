@@ -142,6 +142,5 @@ public class Client {
     }
     public void addlist(Usuari u){
         this.usuaris.add(u);
-        System.out.println(this.usuaris.size());
     }
 }

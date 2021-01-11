@@ -130,7 +130,7 @@ public class UBFLIXParty extends JFrame{
         comboBoxUsuaris.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                refreshLlistes();
+                refreshLlistese();
             }
         });
         popupMenuTemporades = new HashMap<>();
@@ -225,7 +225,6 @@ public class UBFLIXParty extends JFrame{
         dialog.setVisible(true);
         this.NomClient = dialog.getClient();
         jPanel.setVisible(true);
-        comboBoxUsuaris.removeAll();
         refreshLlistes();
     }
 
@@ -236,6 +235,7 @@ public class UBFLIXParty extends JFrame{
     private void formWindowOpened(java.awt.event.WindowEvent evt) {
         refreshListAll();
         ferLogIn();
+        refreshLlistes();
 
     }
 
@@ -307,6 +307,13 @@ public class UBFLIXParty extends JFrame{
      */
     private void refreshLlistes() {
         refreshComboBox();
+        refreshWatched();
+        refreshMyList();
+        refreshContinueWatching();
+        refreshTopValoracions();
+        refreshTopVisualitzacions();
+    }
+    private void refreshLlistese() {
         refreshWatched();
         refreshMyList();
         refreshContinueWatching();
@@ -393,6 +400,7 @@ public class UBFLIXParty extends JFrame{
         dialog.setClient(NomClient);
         dialog.setUsuari((String)comboBoxUsuaris.getSelectedItem());
         dialog.setVisible(true);
+        refreshLlistes();
     }
 
     /**
