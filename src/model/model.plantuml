@@ -2,164 +2,215 @@
 
 title __MODEL's Class Diagram__\n
 
-  namespace ub.edu.model {
-    class ub.edu.model.CarteraClients {
-        - llista : List<Client>
-        + CarteraClients()
-        + addClient()
-        + find()
-        + find_id()
-        + validateLoginUser()
+    namespace Model {
+      class model.CarteraClients {
+          - llista : List<Client>
+          + CarteraClients()
+          + addClient()
+          + find()
+          + find_id()
+          + validLogin()
+          + validateLoginUser()
+      }
     }
-  }
-  
 
-  namespace ub.edu.model {
-    class ub.edu.model.Client {
-        - adress : String
-        - idClient : String
-        - nom : String
-        - pwd : String
-        - usuaris : List<Usuari>
-        - vip : boolean
-        + Client()
-        + addUsuari()
-        + findUserById()
-        + findUserByIdBool()
-        + findUserByName()
-        + getAdress()
-        + getIdClient()
-        + getName()
-        + getPwd()
-        + getUsuaris()
-        {static} + isValidPassword()
-        + isVip()
-        + setAdress()
-        + setIdClient()
-        + setName()
-        + setPwd()
-        + setUsuaris()
-        + setVip()
-    }
-  }
-  
 
-  namespace ub.edu.model {
-    class ub.edu.model.Episodi {
-        - idEpisodi : String
-        - idtemporada : String
-        + Episodi()
-        + getIdEpisodi()
-        + getIdtemporada()
-        + setIdEpisodi()
-        + setIdtemporada()
+    namespace Model {
+      class model.Client {
+          - adress : String
+          - idClient : String
+          - nom : String
+          - pwd : String
+          - usuaris : List<Usuari>
+          - vip : boolean
+          + Client()
+          + addUsuari()
+          + addlist()
+          + findUser()
+          + findUserById()
+          + findUserByIdBool()
+          + findUserByName()
+          + findUserByNameBool()
+          + getAdress()
+          + getIdClient()
+          + getName()
+          + getPwd()
+          + getUsuaris()
+          + getUsuarisString()
+          {static} + isValidPassword()
+          + isVip()
+          + setAdress()
+          + setIdClient()
+          + setName()
+          + setPwd()
+          + setUsuaris()
+          + setVip()
+      }
     }
-  }
-  
 
-  namespace ub.edu.model {
-    class ub.edu.model.Post {
-        - post : String
-        + Post()
-        + getPost()
-        + setPost()
-    }
-  }
-  
 
-  namespace ub.edu.model {
-    class ub.edu.model.Serie {
-        - descripcio : String
-        - mylist : boolean
-        - temporades : List<Temporada>
-        - titol : String
-        + Serie()
-        + getDescripcio()
-        + getMylist()
-        + getTitol()
-        + setDescripcio()
-        + setMyList()
-        + setTitol()
+    namespace Model {
+      class model.Episodi {
+          - idEpisodi : String
+          - idtemporada : String
+          - minutstotals : int
+          + Episodi()
+          + getIdEpisodi()
+          + getIdtemporada()
+          + getMinutstotals()
+          + setIdEpisodi()
+          + setIdtemporada()
+          + setMinutstotals()
+      }
     }
-  }
-  
 
-  namespace ub.edu.model {
-    class ub.edu.model.Temporada {
-        - idTemporada : String
-        - serie : String
-        + Temporada()
-        + getIdTemporada()
-        + getSerie()
-        + setIdTemporada()
-        + setSerie()
-    }
-  }
-  
 
-  namespace ub.edu.model {
-    class ub.edu.model.Usuari {
-        - icona : String
-        - idClient : String
-        - idUser : String
-        - nom : String
-        + Usuari()
-        + getIcona()
-        + getIdClient()
-        + getIdUser()
-        + getName()
-        + setIcona()
-        + setIdClient()
-        + setIdUser()
-        + setName()
+    namespace Model {
+      class model.Post {
+          - post : String
+          + Post()
+          + getPost()
+          + setPost()
+      }
     }
-  }
-  
 
-  namespace ub.edu.model {
-    class ub.edu.model.ValoracioEstrella {
-        - episodi : String
-        - valoracio : int
-        + ValoracioEstrella()
-        + getEpisodi()
-        + getValoracio()
-        + setEpisodi()
-        + setValoracio()
+    namespace Model {
+      class model.Serie {
+          - descripcio : String
+          - mitjaValoracio : float
+          - temporades : List<Temporada>
+          - titol : String
+          - visualitzacio : int
+          + Serie()
+          + find()
+          + getDescripcio()
+          + getMitjaValoracio()
+          + getTemporada()
+          + getTemporades()
+          + getTitol()
+          + getVisualitzacio()
+          + setDescripcio()
+          + setMitjaValoracio()
+          + setTemporades()
+          + setTitol()
+          + setVisualitzacio()
+      }
     }
-  }
-  
 
-  namespace ub.edu.model {
-    class ub.edu.model.ValoracioThumb {
-        - episodi : String
-        - valoracio : boolean
-        + ValoracioThumb()
-        + getEpisodi()
-        + getValoracio()
-        + setEpisodi()
-        + setValoracio()
-    }
-  }
-  
 
-  namespace ub.edu.model {
-    class ub.edu.model.Watching {
-        - idEpisodi : String
-        - idSerie : String
-        - idTemporada : String
-        - numMinuts : String
-        + Watching()
-        + getIdEpisodi()
-        + getIdSerie()
-        + getIdTemporada()
-        + getNumMinuts()
-        + setIdEpisodi()
-        + setIdSerie()
-        + setIdTemporada()
-        + setNumMinuts()
+    namespace Model {
+      class model.Temporada {
+          - acabat : boolean
+          - episodis : List<Episodi>
+          - idTemporada : String
+          - serie : String
+          + Temporada()
+          + find()
+          + getEpisodi()
+          + getEpisodis()
+          + getIdTemporada()
+          + getSerie()
+          + isAcabat()
+          + setAcabat()
+          + setEpisodis()
+          + setIdTemporada()
+          + setSerie()
+      }
     }
-  }
-  
+
+    namespace Model {
+      class model.Usuari {
+          - followers : List<Usuari>
+          - followings : List<Usuari>
+          - icona : String
+          - idClient : String
+          - idUser : String
+          - mylist : List<Serie>
+          - nom : String
+          - valoracioThumbs : List<ValoracioThumb>
+          - valoracionsEstrella : List<ValoracioEstrella>
+          - watching : List<Watching>
+          + Usuari()
+          + addList()
+          + getFollowers()
+          + getFollowings()
+          + getIcona()
+          + getIdClient()
+          + getIdUser()
+          + getMyList()
+          + getName()
+          + getValoracionsEstrella()
+          + getWatching()
+          + setFollowers()
+          + setFollowings()
+          + setIcona()
+          + setIdClient()
+          + setIdUser()
+          + setMyList()
+          + setName()
+          + setNom()
+          + setValoracionsEstrella()
+          + setWatching()
+          + valorarEstrella()
+          + valorarThumb()
+      }
+    }
+
+    namespace Model {
+      class model.ValoracioEstrella {
+          - episodi : String
+          - valoracio : int
+          + ValoracioEstrella()
+          + getEpisodi()
+          + getValoracio()
+          + setEpisodi()
+          + setValoracio()
+      }
+    }
+
+
+    namespace Model {
+      class model.ValoracioThumb {
+          - episodi : String
+          - valoracio : boolean
+          + ValoracioThumb()
+          + getEpisodi()
+          + getValoracio()
+          + setEpisodi()
+          + setValoracio()
+      }
+    }
+
+
+    namespace Model {
+      class model.Watching {
+          - idEpisodi : String
+          - idSerie : String
+          - idTemporada : String
+          - numMinuts : String
+          + Watching()
+          + getIdEpisodi()
+          + getIdSerie()
+          + getIdTemporada()
+          + getNumMinuts()
+          + setIdEpisodi()
+          + setIdSerie()
+          + setIdTemporada()
+          + setNumMinuts()
+      }
+    }
+
+
+    namespace Model {
+      class model.carteraSeries {
+          - llista : List<Serie>
+          + carteraSeries()
+          + find()
+          + getLlista()
+          + setLlista()
+      }
+    }
+
 
 
 

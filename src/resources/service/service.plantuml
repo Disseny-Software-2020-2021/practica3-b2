@@ -2,86 +2,90 @@
 
 title __SERVICE's Class Diagram__\n
 
-  namespace ub.edu.resources.service {
-    interface ub.edu.resources.service.AbstractFactoryData {
-        {abstract} + createDAOClient()
-        {abstract} + createDAOEpisodi()
-        {abstract} + createDAOFollowers()
-        {abstract} + createDAOFollowing()
-        {abstract} + createDAOMyList()
-        {abstract} + createDAOPost()
-        {abstract} + createDAOSerie()
-        {abstract} + createDAOTemporada()
-        {abstract} + createDAOUsuari()
-        {abstract} + createDAOValoracioEstrella()
-        {abstract} + createDAOValoracioThumb()
-        {abstract} + createDAOWatching()
+    namespace Resources.service {
+      interface resources.service.AbstractFactoryData {
+          {abstract} + createDAOClient()
+          {abstract} + createDAOEpisodi()
+          {abstract} + createDAOFollowers()
+          {abstract} + createDAOFollowing()
+          {abstract} + createDAOMyList()
+          {abstract} + createDAOPost()
+          {abstract} + createDAOSerie()
+          {abstract} + createDAOTemporada()
+          {abstract} + createDAOUsuari()
+          {abstract} + createDAOValoracioEstrella()
+          {abstract} + createDAOValoracioThumb()
+          {abstract} + createDAOWatching()
+      }
     }
-  }
-  
 
-  namespace ub.edu.resources.service {
-    class ub.edu.resources.service.DataService {
-        + DataService()
-        + addUsuari()
-        + finishWatching()
-        + getAllClients()
-        + getAllEpisodis()
-        + getAllPosts()
-        + getAllSeries()
-        + getAllTemporades()
-        + getAllUsuaris()
-        + getClientByUsuariAndPassword()
-        + getFollowersForUsuari()
-        + getFollowingForUsuari()
-        + getMyListForUsuari()
-        + getUsuarisByClient()
-        + getValoracioEstrella()
-        + getValoracioThumb()
-        + getWatchingForUsuari()
-        + isTakenUsernameU()
-        + isTakenUsernameUsername()
-        + markInMyList()
-        + pauseWatching()
-        + setValoracioEstrella()
-        + setValoracioThumb()
-        + startWatching()
-        + unmarkInMyList()
+
+    namespace Resources.service {
+      class resources.service.DataService {
+          + DataService()
+          + addClient()
+          + addUsuari()
+          + finishWatching()
+          + getAllClients()
+          + getAllEpisodis()
+          + getAllPosts()
+          + getAllSeries()
+          + getAllTemporades()
+          + getAllUsuaris()
+          + getAllValoracionsEstrella()
+          + getAllValoracionsThumb()
+          + getClientByUsuariAndPassword()
+          + getEpisodisbyTemporada()
+          + getFollowersForUsuari()
+          + getFollowingForUsuari()
+          + getMyListForUsuari()
+          + getTemporadesBySerie()
+          + getUsuarisByClient()
+          + getValoracioEstrella()
+          + getValoracioThumb()
+          + getWatchingForUsuari()
+          + isTakenUsernameU()
+          + isTakenUsernameUsername()
+          + markInMyList()
+          + pauseWatching()
+          + setValoracioEstrella()
+          + setValoracioThumb()
+          + startWatching()
+          + unmarkInMyList()
+      }
     }
-  }
-  
 
-  namespace ub.edu.resources.service {
-    class ub.edu.resources.service.FactoryMOCK {
-        + createDAOClient()
-        + createDAOEpisodi()
-        + createDAOFollowers()
-        + createDAOFollowing()
-        + createDAOMyList()
-        + createDAOPost()
-        + createDAOSerie()
-        + createDAOTemporada()
-        + createDAOUsuari()
-        + createDAOValoracioEstrella()
-        + createDAOValoracioThumb()
-        + createDAOWatching()
+    namespace esources.service {
+      class resources.service.FactoryMOCK {
+          + createDAOClient()
+          + createDAOEpisodi()
+          + createDAOFollowers()
+          + createDAOFollowing()
+          + createDAOMyList()
+          + createDAOPost()
+          + createDAOSerie()
+          + createDAOTemporada()
+          + createDAOUsuari()
+          + createDAOValoracioEstrella()
+          + createDAOValoracioThumb()
+          + createDAOWatching()
+      }
     }
-  }
-  
 
-  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOEpisodi : EpisodiDAO
-  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOTemporada : TemporadaDAO
-  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOValoracioEstrella : ValoracioEstrellaDAO
-  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOValoracioThumb : ValoracioThumbDAO
-  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOClient : clientDAO
-  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOFollowers : followersDAO
-  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOFollowing : followingDAO
-  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOMyList : mylistDAO
-  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOPost : postDAO
-  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOSerie : serieDAO
-  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOUsuari : usuariDAO
-  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOWatching : watchingDAO
-  ub.edu.resources.service.FactoryMOCK .up.|> ub.edu.resources.service.AbstractFactoryData
+
+  resources.service.DataService o-- resources.dao.DAOEpisodi : EpisodiDAO
+  resources.service.DataService o-- resources.dao.DAOTemporada : TemporadaDAO
+  resources.service.DataService o-- resources.dao.DAOValoracioEstrella : ValoracioEstrellaDAO
+  resources.service.DataService o-- resources.dao.DAOValoracioThumb : ValoracioThumbDAO
+  resources.service.DataService o-- resources.dao.DAOClient : clientDAO
+  resources.service.DataService o-- resources.dao.DAOFollowers : followersDAO
+  resources.service.DataService o-- resources.dao.DAOFollowing : followingDAO
+  resources.service.DataService o-- resources.dao.DAOMyList : mylistDAO
+  resources.service.DataService o-- resources.dao.DAOPost : postDAO
+  resources.service.DataService o-- resources.dao.DAOSerie : serieDAO
+  resources.service.DataService o-- resources.dao.DAOUsuari : usuariDAO
+  resources.service.DataService o-- resources.dao.DAOWatching : watchingDAO
+  resources.service.FactoryMOCK .up.|> resources.service.AbstractFactoryData
 
 
 right footer

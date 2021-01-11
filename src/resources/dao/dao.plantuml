@@ -2,105 +2,105 @@
 
 title __DAO's Class Diagram__\n
 
-  namespace ub.edu.resources.dao {
-    interface ub.edu.resources.dao.DAO {
-        {abstract} + add()
-        {abstract} + delete()
-        {abstract} + getAll()
-        {abstract} + getById()
-        {abstract} + update()
+    namespace Resources.dao {
+      interface resources.dao.DAO {
+          {abstract} + add()
+          {abstract} + delete()
+          {abstract} + getAll()
+          {abstract} + getById()
+          {abstract} + update()
+      }
     }
-  }
-  
 
-  namespace ub.edu.resources.dao {
-    interface ub.edu.resources.dao.DAOClient {
-        {abstract} + findClientByUserNameAndPassword()
-    }
-  }
-  
 
-  namespace ub.edu.resources.dao {
-    interface ub.edu.resources.dao.DAOEpisodi {
-        {abstract} + getEpisodisForTemporada()
+    namespace Resources.dao {
+      interface resources.dao.DAOClient {
+          {abstract} + findClientByUserNameAndPassword()
+      }
     }
-  }
-  
 
-  namespace ub.edu.resources.dao {
-    interface ub.edu.resources.dao.DAOFollowers {
-        {abstract} + getFollowersForUsuari()
-    }
-  }
-  
 
-  namespace ub.edu.resources.dao {
-    interface ub.edu.resources.dao.DAOFollowing {
-        {abstract} + getFollowingForUsuari()
+    namespace Resources.dao {
+      interface resources.dao.DAOEpisodi {
+          {abstract} + getEpisodisForTemporada()
+      }
     }
-  }
-  
 
-  namespace ub.edu.resources.dao {
-    interface ub.edu.resources.dao.DAOMyList {
-        {abstract} + addToMyList()
-        {abstract} + getMyListForUsuari()
-        {abstract} + removeFromMyList()
-    }
-  }
-  
 
-  namespace ub.edu.resources.dao {
-    interface ub.edu.resources.dao.DAOPost {
-        {abstract} + add()
+    namespace Resources.dao {
+      interface resources.dao.DAOFollowers {
+          {abstract} + getFollowersForUsuari()
+      }
     }
-  }
-  
 
-  namespace ub.edu.resources.dao {
-    interface ub.edu.resources.dao.DAOSerie {
-    }
-  }
-  
 
-  namespace ub.edu.resources.dao {
-    interface ub.edu.resources.dao.DAOTemporada {
-        {abstract} + getTemporadesForSerie()
+    namespace Resources.dao {
+      interface resources.dao.DAOFollowing {
+          {abstract} + getFollowingForUsuari()
+      }
     }
-  }
-  
 
-  namespace ub.edu.resources.dao {
-    interface ub.edu.resources.dao.DAOUsuari {
-        {abstract} + getUsuarisForClient()
-    }
-  }
-  
 
-  namespace ub.edu.resources.dao {
-    interface ub.edu.resources.dao.DAOValoracioEstrella {
-        {abstract} + add()
-        {abstract} + update()
+    namespace Resources.dao {
+      interface resources.dao.DAOMyList {
+          {abstract} + addToMyList()
+          {abstract} + getMyListForUsuari()
+          {abstract} + removeFromMyList()
+      }
     }
-  }
-  
 
-  namespace ub.edu.resources.dao {
-    interface ub.edu.resources.dao.DAOValoracioThumb {
-        {abstract} + add()
-        {abstract} + update()
-    }
-  }
-  
 
-  namespace ub.edu.resources.dao {
-    interface ub.edu.resources.dao.DAOWatching {
-        {abstract} + addToWatching()
-        {abstract} + getWatchingForUsuari()
-        {abstract} + updateToWatching()
+    namespace Resources.dao {
+      interface resources.dao.DAOPost {
+          {abstract} + add()
+      }
     }
-  }
-  
+
+
+    namespace Resources.dao {
+      interface resources.dao.DAOSerie {
+      }
+    }
+
+
+    namespace Resources.dao {
+      interface resources.dao.DAOTemporada {
+          {abstract} + getTemporadesForSerie()
+      }
+    }
+
+
+    namespace Resources.dao {
+      interface resources.dao.DAOUsuari {
+          {abstract} + getUsuarisForClient()
+      }
+    }
+
+
+    namespace Resources.dao {
+      interface resources.dao.DAOValoracioEstrella {
+          {abstract} + add()
+          {abstract} + update()
+      }
+    }
+
+
+    namespace Resources.dao {
+      interface resources.dao.DAOValoracioThumb {
+          {abstract} + add()
+          {abstract} + update()
+      }
+    }
+
+
+    namespace Resources.dao {
+      interface resources.dao.DAOWatching {
+          {abstract} + addToWatching()
+          {abstract} + getWatchingForUsuari()
+          {abstract} + updateToWatching()
+      }
+    }
+
 
 
 

@@ -1,0 +1,312 @@
+@startuml
+
+title __VIEW's Class Diagram__\n
+
+    namespace View {
+      class view.FerPost {
+          - AreaMissatge : JTextArea
+          - cancelButton : JButton
+          - jpanel : JPanel
+          - sendButton : JButton
+          # FerPost()
+          - initComponents()
+          - onCancel()
+          - onPost()
+      }
+    }
+
+
+    namespace View {
+      class view.FormEpisodi {
+          - client : String
+          - descripcioEpisodi : JLabel
+          - duracioEpisodi : JLabel
+          - jpanel : JPanel
+          - titolEpisodi : JLabel
+          - tornarAlMenuButton : JButton
+          - usuari : String
+          - valorarButton : JButton
+          - visualitzarButton : JButton
+          + getClient()
+          + getUsuari()
+          + setClient()
+          + setUsuari()
+          # FormEpisodi()
+          - estaVisualitzat()
+          - initComponents()
+          - onVisualitzar()
+      }
+    }
+
+
+    namespace View {
+      class view.FormPerfilUsuari {
+          - Followers : JPanel
+          - Following : JPanel
+          - PostRebuts : JPanel
+          - Posts : JPanel
+          - btnTancarSessio : JButton
+          - ferPostButton : JButton
+          - jPanel : JPanel
+          - jpanelRoot : JPanel
+          - listFollowers : JList
+          - listFollowing : JList
+          - listPost : JList
+          - listPostRebuts : JList
+          - llistes : JTabbedPane
+          # FormPerfilUsuari()
+          - formWindowClosing()
+          - formWindowOpened()
+          - initComponents()
+          - onCancel()
+          - onFerPost()
+          - refreshFollowers()
+          - refreshFollowing()
+          - refreshListAll()
+          - refreshPostRebuts()
+          - refreshPosts()
+          - userActionPerformed()
+      }
+    }
+
+
+    namespace View {
+      class view.FormReproduccio {
+          - actionListener : ActionListener
+          - duracioVisualitzacio : int
+          - duracioVisualitzada : int
+          - episodi : String
+          - jPanel : JPanel
+          - numTemporada : int
+          - progressBar : JProgressBar
+          - serie : String
+          - tancaButton : JButton
+          - timer : Timer
+          # FormReproduccio()
+          - formWindowClosing()
+          - formWindowOpened()
+          - initComponents()
+          - onPause()
+      }
+    }
+
+
+    namespace View {
+      class view.FormReproductorVideo {
+          {static} - MEDIA_URL : String
+          - duracioVisualitzacio : int
+          - duracioVisualitzada : int
+          - episodi : String
+          - fxPanel : JFXPanel
+          - mediaPlayer : MediaPlayer
+          - numTemporada : int
+          - panelReproduccio : JPanel
+          - scene : Scene
+          - serie : String
+          + FormReproductorVideo()
+          - createScene()
+          - formWindowClosing()
+          - formWindowOpened()
+          - initAndShowGUI()
+          - initFX()
+      }
+    }
+
+
+    namespace View {
+      class view.FormUser {
+          - buttonCancel : JButton
+          - buttonOK : JButton
+          - client : String
+          - contentPane : JPanel
+          - textFieldUsername : JTextField
+          - usernameLabel : JLabel
+          - usuari : String
+          + FormUser()
+          + getUsuari()
+          + setClient()
+          + setUsuari()
+          - initComponents()
+          - onCancel()
+          - onRegister()
+      }
+    }
+
+
+    namespace View {
+      class view.FrmLogIn {
+          - btnLogIn : JButton
+          - btnRegistrar : JButton
+          - buttonCancel : JButton
+          - contentPane : JPanel
+          - idClient : String
+          - labelPassword : JLabel
+          - labelUsername : JLabel
+          - textPassword : JPasswordField
+          - textUsername : JTextField
+          + getClient()
+          # FrmLogIn()
+          - initComponents()
+          - onCancel()
+          - onOK()
+          - onRegistrar()
+      }
+    }
+
+
+    namespace View {
+      class view.FrmRegistre {
+          - buttonCancel : JButton
+          - buttonOK : JButton
+          - contentPane : JPanel
+          - labelAdreca : JLabel
+          - labelDNI : JLabel
+          - labelNomReal : JLabel
+          - labelPassword1 : JLabel
+          - labelPassword2 : JLabel
+          - labelUsername : JLabel
+          - textAdreca : JTextField
+          - textDNI : JTextField
+          - textNomReal : JTextField
+          - textPassword1 : JPasswordField
+          - textPassword2 : JPasswordField
+          - textUsername : JTextField
+          # FrmRegistre()
+          - initComponents()
+          - onCancel()
+          - onOK()
+      }
+    }
+
+
+    namespace View {
+      class view.FrmValoracio {
+          - barraEmocio : JSlider
+          - btnCor : JButton
+          - btnEscollir : JButton
+          - btnMarcar : JButton
+          - btnValorar : JButton
+          - buttonCancel : JButton
+          - buttonGroup : ButtonGroup
+          - client : String
+          - contentPane : JPanel
+          - corRatioButton : JRadioButton
+          - emocioRadioButton : JRadioButton
+          - panelCor : JPanel
+          - panelEmocio : JPanel
+          - usuari : String
+          + getClient()
+          + getUsuari()
+          + setClient()
+          + setUsuari()
+          # FrmValoracio()
+          - confirmacioContinuarValoracio()
+          - groupButton()
+          - inici()
+          - initComponents()
+          - onCancel()
+          - onValorar()
+      }
+    }
+
+
+    namespace View {
+      class view.MediaControl {
+          - atEndOfMedia : boolean
+          - duration : Duration
+          - mediaBar : HBox
+          - mediaView : MediaView
+          - mp : MediaPlayer
+          - playTime : Label
+          - repeat : boolean
+          - stopRequested : boolean
+          - timeSlider : Slider
+          - volumeSlider : Slider
+          + MediaControl()
+          # updateValues()
+          {static} - formatTime()
+      }
+    }
+
+
+    namespace View {
+      class view.UBFLIXParty {
+          - NomClient : String
+          - btnAfegirMyList : JButton
+          - btnCrearUsuari : JButton
+          - btnTancarSessio : JButton
+          - comboBoxUsuaris : JComboBox
+          - fieldAll : JPanel
+          - fieldNotStarted : JPanel
+          - fieldWatchNext : JPanel
+          - fieldWatched : JPanel
+          - jPanel : JPanel
+          - labelTopValoracions : JLabel
+          - labelTopVisualitzacions : JLabel
+          - listAll : JList
+          - listContinueWatching : JList
+          - listMyList : JList
+          - listWatched : JList
+          - llistes : JTabbedPane
+          - perfilButton : JButton
+          - popupMenuTemporades : HashMap<String, JPopupMenu>
+          - tableModelVal : DefaultTableModel
+          - tableModelVis : DefaultTableModel
+          - tableTopValoracions : JTable
+          - tableTopVisualitzacions : JTable
+          + UBFLIXParty()
+          - addMyList()
+          - ferLogIn()
+          - formWindowClosing()
+          - formWindowOpened()
+          - inicialitzarLlistaTopValoracions()
+          - inicialitzarLlistaTopVisualitzacions()
+          - initComponents()
+          - mostrarPerfil()
+          - mostrarPopupMenuTemporades()
+          - mostrarTemporades()
+          - onEpisodi()
+          - refreshComboBox()
+          - refreshComboBox1()
+          - refreshContinueWatching()
+          - refreshEpisodis()
+          - refreshListAll()
+          - refreshLlistes()
+          - refreshLlistese()
+          - refreshMyList()
+          - refreshTemporades()
+          - refreshTopValoracions()
+          - refreshTopVisualitzacions()
+          - refreshWatched()
+          - userActionPerformed()
+      }
+    }
+
+
+  view.FerPost -up-|> javax.swing.JDialog
+  view.FormEpisodi -up-|> javax.swing.JDialog
+  view.FormPerfilUsuari -up-|> javax.swing.JFrame
+  view.FormReproduccio -up-|> javax.swing.JDialog
+  view.FormReproductorVideo -up-|> javax.swing.JDialog
+  view.FormReproductorVideo o-- view.MediaControl : mediaControl
+  view.FormUser -up-|> javax.swing.JDialog
+  view.FormUser o-- controller.Controller : controlador
+  view.FrmLogIn -up-|> javax.swing.JDialog
+  view.FrmLogIn o-- controller.Controller : controlador
+  view.FrmRegistre -up-|> javax.swing.JDialog
+  view.FrmRegistre o-- controller.Controller : controlador
+  view.FrmValoracio -up-|> javax.swing.JDialog
+  view.FrmValoracio o-- controller.Controller : controller
+  view.MediaControl -up-|> javafx.scene.layout.BorderPane
+  view.UBFLIXParty -up-|> javax.swing.JFrame
+  view.UBFLIXParty o-- controller.Controller : controlador
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
