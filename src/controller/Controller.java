@@ -571,7 +571,6 @@ public class Controller {
                                 mitja += val.getValoracio();
                                 cont++;
                             }
-
                         }
                     }
                     mitja = mitja / (float) cont;
