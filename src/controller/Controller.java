@@ -363,13 +363,17 @@ public class Controller {
         return valoracioThumb.getValoracio();
     }
 
-    public void setValoracioEstrella(String idClient, String idUsuari, String idSerie, String idTemporada, String idEpisodi, int valoracio) throws Exception {
+    public void setValoracioEstrella(String idClient, String idUsuari, String idSerie, int idTemporada, String idEpisodi, int valoracio) throws Exception {
         try {
             if (carteraClients.find(idClient) != null) {
                 Usuari usuari = carteraClients.find(idClient).findUserByName(idUsuari);
                 if (usuari != null) {
+                    List<Temporada> temporades = this.dataService.getTemporadesBySerie(idSerie);
+                    idTemporada = idTemporada - 1;
+                    Temporada temporada = temporades.get(idTemporada);
+                    String tempo = temporada.getIdTemporada();
                     ValoracioEstrella v = usuari.valorarEstrella(idEpisodi, valoracio);
-                    this.dataService.setValoracioEstrella(idClient, idUsuari, idSerie, idTemporada, idEpisodi, v);
+                    this.dataService.setValoracioEstrella(idClient, idUsuari, idSerie, tempo, idEpisodi, v);
                     valoracionsEstrella.add(v);
                 } else throw new Exception();
             } else throw new Exception();
@@ -600,5 +604,13 @@ public class Controller {
     public void setMyList(String idClient, String nom, String serie){
         List<Serie> mylist = carteraClients.find(idClient).findUser(nom).getMyList();
         mylist.add(llistaSeries.find(serie));
+    }
+
+    public void setNomClient(String nomClient) {
+        this.nomClient = nomClient;
+    }
+
+    public String getNomClient() {
+        return nomClient;
     }
 }

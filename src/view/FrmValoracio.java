@@ -1,6 +1,8 @@
 package view;
 
 
+import controller.Controller;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -21,7 +23,9 @@ class FrmValoracio extends JDialog {
     private JButton btnEscollir;
     //Afegit manualment
     private ButtonGroup buttonGroup;
-
+    private Controller controller;
+    private String usuari;
+    private String client;
     /**
      * Constructor de la classe FrmValoracio
      * @param idSerie identificador de la sèrie de l'episodi
@@ -30,6 +34,7 @@ class FrmValoracio extends JDialog {
      */
     protected FrmValoracio(String idSerie, int numTemporada, String episodi) {
         initComponents(idSerie, numTemporada, episodi);
+        controller = Controller.getInstance();
         setResizable(false);
         setTitle("Valoració de l'episodi");
     }
@@ -49,7 +54,11 @@ class FrmValoracio extends JDialog {
 
         btnValorar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onValorar(idSerie, numTemporada, episodi);
+                try {
+                    onValorar(idSerie, numTemporada, episodi);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
 
@@ -133,7 +142,8 @@ class FrmValoracio extends JDialog {
      * @param numTemporada número de temporada de l'episodi
      * @param episodi títol de l'episodi seleccionat
      */
-    private void onValorar(String idSerie, int numTemporada, String episodi) {
+    private void onValorar(String idSerie, int numTemporada, String episodi) throws Exception {
+        controller.setValoracioEstrella(client, usuari, idSerie, numTemporada,episodi, barraEmocio.getValue());
         String estat = "Episodi valorat";
         JOptionPane.showMessageDialog(contentPane, estat);
         dispose();
@@ -147,5 +157,21 @@ class FrmValoracio extends JDialog {
         JOptionPane.showMessageDialog(contentPane, estat);
         if (JOptionPane.showConfirmDialog(contentPane, "Vols acabar la valoració?") == 0)
             dispose();
+    }
+
+    public String getUsuari() {
+        return usuari;
+    }
+
+    public void setUsuari(String usuari) {
+        this.usuari = usuari;
+    }
+
+    public void setClient(String client) {
+        this.client = client;
+    }
+
+    public String getClient() {
+        return client;
     }
 }

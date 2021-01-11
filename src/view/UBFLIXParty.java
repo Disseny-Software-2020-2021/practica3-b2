@@ -381,6 +381,8 @@ public class UBFLIXParty extends JFrame{
     private void onEpisodi(String idSerie, int temporada, String episodi, int duracio, int duracioVisualitzada, String descripcio) {
         FormEpisodi dialog = new FormEpisodi(idSerie, temporada, episodi, duracio, descripcio);
         dialog.pack();
+        dialog.setClient(NomClient);
+        dialog.setUsuari((String)comboBoxUsuaris.getSelectedItem());
         dialog.setVisible(true);
     }
 
