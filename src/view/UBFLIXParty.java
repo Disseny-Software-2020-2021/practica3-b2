@@ -130,7 +130,7 @@ public class UBFLIXParty extends JFrame{
         comboBoxUsuaris.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                refreshLlistes();
+                refreshLlistese();
             }
         });
         popupMenuTemporades = new HashMap<>();
@@ -168,7 +168,6 @@ public class UBFLIXParty extends JFrame{
         dialog.setClient(this.NomClient);
         dialog.pack();
         dialog.setVisible(true);
-        this.comboBoxUsuaris.addItem(dialog.getUsuari());
         refreshLlistes();
     }
 
@@ -225,8 +224,7 @@ public class UBFLIXParty extends JFrame{
         dialog.setVisible(true);
         this.NomClient = dialog.getClient();
         jPanel.setVisible(true);
-        comboBoxUsuaris.removeAll();
-        refreshLlistes();
+        refreshComboBox1();
     }
 
     /**
@@ -236,6 +234,7 @@ public class UBFLIXParty extends JFrame{
     private void formWindowOpened(java.awt.event.WindowEvent evt) {
         refreshListAll();
         ferLogIn();
+        refreshLlistes();
 
     }
 
@@ -314,9 +313,24 @@ public class UBFLIXParty extends JFrame{
         refreshTopVisualitzacions();
     }
 
+    private void refreshLlistese() {
+        refreshWatched();
+        refreshMyList();
+        refreshContinueWatching();
+        refreshTopValoracions();
+        refreshTopVisualitzacions();
+    }
+
+
     /**
      * Mètode que serveix per actualitzar totes el combobox
      */
+    private void refreshComboBox1() {
+        List<Usuari> usuaris = controlador.getUsuaris(NomClient);
+        for(Usuari u: usuaris){
+            comboBoxUsuaris.addItem(u.getName());
+        }
+    }
     private void refreshComboBox() {
         comboBoxUsuaris.removeAllItems();
         List<Usuari> usuaris = controlador.getUsuaris(NomClient);
@@ -329,37 +343,46 @@ public class UBFLIXParty extends JFrame{
      * Mètode que actualitza les sèries de la llista MyList
      */
     private void refreshMyList() {
-        String[] series = controlador.getMyList(NomClient, comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
-        listMyList.setListData(series);
+        if(comboBoxUsuaris.getItemCount() != 0){
+            String[] series = controlador.getMyList(NomClient, comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
+            listMyList.setListData(series);
+        }
+
     }
 
     /**
      * Mètode que actualitza les sèries de la llista Watched
      */
     private void refreshWatched() {
-        String[] series = controlador.getWatched(NomClient, comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
-        listWatched.setListData(series);
+        if(comboBoxUsuaris.getItemCount() != 0) {
+            String[] series = controlador.getWatched(NomClient, comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
+            listWatched.setListData(series);
+        }
     }
 
     /**
      * Mètode que actualitza les sèries de la llista ContinueWatching
      */
     private void refreshContinueWatching() {
-        String[] series = controlador.getWatching(NomClient, comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
-        listContinueWatching.setListData(series);
+        if(comboBoxUsuaris.getItemCount() != 0) {
+            String[] series = controlador.getWatching(NomClient, comboBoxUsuaris.getSelectedItem().toString()).toArray(new String[0]);
+            listContinueWatching.setListData(series);
+        }
     }
 
     /**
      * Mètode que actualitza les sèries del top10 de sèries més ben valorades
      */
     private void refreshTopValoracions() {
-        //Fem el clear de la llista del top 10 de valoracions
-        int numRows = tableModelVal.getRowCount();
-        for (int i = numRows - 1; i >= 0; i--)
-            tableModelVal.removeRow(i);
-        String [] topTenVal = controlador.getTop10Val().toArray(new String[0]);
-        for (String serie: topTenVal) {
-            tableModelVal.addRow(new String[]{serie, String.format("%.2f", controlador.valoracio(serie))});
+        if(comboBoxUsuaris.getItemCount() != 0) {
+            //Fem el clear de la llista del top 10 de valoracions
+            int numRows = tableModelVal.getRowCount();
+            for (int i = numRows - 1; i >= 0; i--)
+                tableModelVal.removeRow(i);
+            String[] topTenVal = controlador.getTop10Val().toArray(new String[0]);
+            for (String serie : topTenVal) {
+                tableModelVal.addRow(new String[]{serie, String.format("%.2f", controlador.valoracio(serie))});
+            }
         }
     }
 
@@ -367,14 +390,16 @@ public class UBFLIXParty extends JFrame{
      * Mètode que actualitza les sèries del top10 de sèries més visualitzades
      */
     private void refreshTopVisualitzacions() {
-        //Fem el clear de la llista del top 10 de visualitzacions
-        int numRows = tableModelVis.getRowCount();
-        for (int i = numRows - 1; i >= 0; i--)
-            tableModelVis.removeRow(i);
+        {
+            //Fem el clear de la llista del top 10 de visualitzacions
+            int numRows = tableModelVis.getRowCount();
+            for (int i = numRows - 1; i >= 0; i--)
+                tableModelVis.removeRow(i);
 
-        String [] topTenVisualitzacions = controlador.getTop10Views().toArray(new String[0]);
-        for (String serie: topTenVisualitzacions) {
-            tableModelVis.addRow(new Object[]{serie, controlador.visualitzacions(serie)});
+            String[] topTenVisualitzacions = controlador.getTop10Views().toArray(new String[0]);
+            for (String serie : topTenVisualitzacions) {
+                tableModelVis.addRow(new Object[]{serie, controlador.visualitzacions(serie)});
+            }
         }
     }
 
@@ -393,6 +418,7 @@ public class UBFLIXParty extends JFrame{
         dialog.setClient(NomClient);
         dialog.setUsuari((String)comboBoxUsuaris.getSelectedItem());
         dialog.setVisible(true);
+        refreshLlistes();
     }
 
     /**

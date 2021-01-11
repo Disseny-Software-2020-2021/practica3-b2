@@ -372,8 +372,8 @@ public class Controller {
                     idTemporada = idTemporada - 1;
                     Temporada temporada = temporades.get(idTemporada);
                     String tempo = temporada.getIdTemporada();
-                    ValoracioEstrella v = usuari.valorarEstrella(idEpisodi, valoracio);
-                    this.dataService.setValoracioEstrella(idClient, idUsuari, idSerie, tempo, idEpisodi, v);
+                    ValoracioEstrella v = carteraClients.find(idClient).findUserByName(idUsuari).valorarEstrella(idEpisodi, valoracio);
+                    carteraClients.find(idClient).findUserByName(idUsuari).addList(v);
                     valoracionsEstrella.add(v);
                 } else throw new Exception();
             } else throw new Exception();

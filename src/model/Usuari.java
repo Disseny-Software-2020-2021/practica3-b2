@@ -116,4 +116,21 @@ public class Usuari {
         return followers;
 
     }
+
+    public List<ValoracioEstrella> getValoracionsEstrella() {
+        if (this.valoracionsEstrella == null){
+            this.valoracionsEstrella = new ArrayList<>();
+        }
+        return valoracionsEstrella;
+    }
+    public void addList(ValoracioEstrella v){
+        if (this.valoracionsEstrella == null){
+            this.valoracionsEstrella = new ArrayList<>();
+        }
+        this.valoracionsEstrella.add(v);
+    }
+
+    public void setValoracionsEstrella(List<ValoracioEstrella> valoracionsEstrella) {
+        this.valoracionsEstrella = valoracionsEstrella;
+    }
 }
