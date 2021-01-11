@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuari {
@@ -65,6 +66,9 @@ public class Usuari {
     }
 
     public List<Serie> getMyList() {
+        if (mylist == null){
+            this.mylist = new ArrayList<>();
+        }
         return mylist;
 
     }
@@ -75,6 +79,9 @@ public class Usuari {
     }
 
     public List<Watching> getWatching() {
+        if(watching == null){
+            this.watching = new ArrayList<>();
+        }
         return watching;
 
     }

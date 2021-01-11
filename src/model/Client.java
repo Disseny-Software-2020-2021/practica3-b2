@@ -67,6 +67,9 @@ public class Client {
     }
 
     public List<Usuari> getUsuaris() {
+        if(this.usuaris == null){
+            this.usuaris = new ArrayList<>();
+        }
         return this.usuaris;
     }
 
