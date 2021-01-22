@@ -2,49 +2,71 @@
 
 title __CONTROLLER's Class Diagram__\n
 
-  namespace ub.edu.controller {
-    class ub.edu.controller.Controller {
-        - llistaPosts : List<Post>
-        - llistaSeries : List<Serie>
-        + Controller()
-        + addClient()
-        + addClient()
-        + addUsuari()
-        + catalegPosts()
-        + catalegSeries()
-        + getIcona()
-        + getUsername()
-        + getValoracioEstrella()
-        + getValoracioThumb()
-        + iniCarteraClients()
-        + isFromMyList()
-        + isTakenUsername()
-        + isTakenUsernameU()
-        + isValidDni()
-        + isValidNameClient()
-        + isValidPassword()
-        + llistarCatalegSeries()
-        + llistarFollowers()
-        + llistarFollowing()
-        + llistarPost()
-        + markInMyList()
-        + mostrarDetallsSerie()
-        + setProfile()
-        + setValoracioEstrella()
-        + setValoracioThumb()
-        + unmarkInMyList()
-        + validateClient()
-        + validateLoginUser()
-        + veureEpisodi()
-        + veureLlistaMyList()
-        + veureLlistaWatching()
+    namespace Controller {
+      class controller.Controller {
+          {static} - instancia : Controller
+          - llistaPosts : List<Post>
+          - nomClient : String
+          - valoracionsEstrella : List<ValoracioEstrella>
+          - valoracionsThumb : List<ValoracioThumb>
+          + LoginClient()
+          + addClient()
+          + addUsuari()
+          + catalegPosts()
+          + catalegSeries()
+          + getEpisodis()
+          + getIcona()
+          {static} + getInstance()
+          + getMinTotals()
+          + getMyList()
+          + getNomClient()
+          + getTemporades()
+          + getTop10Val()
+          + getTop10Views()
+          + getUsername()
+          + getUsuaris()
+          + getUsuarisString()
+          + getValoracioEstrella()
+          + getValoracioThumb()
+          + getWatched()
+          + getWatching()
+          + iniSeries()
+          + iniSetUp()
+          + isFromMyList()
+          + isTakenUsername()
+          + isValidDni()
+          + isValidNameClient()
+          + isValidPassword()
+          + llistarCatalegSeries()
+          + llistarFollowers()
+          + llistarFollowing()
+          + llistarPost()
+          + llistarSeriesVal()
+          + llistarSeriesViews()
+          + markInMyList()
+          + mostrarDetallsSerie()
+          + setMyList()
+          + setNomClient()
+          + setProfile()
+          + setValoracioEstrella()
+          + setValoracioThumb()
+          + unmarkInMyList()
+          + validateClient()
+          + validateLoginUser()
+          + valoracio()
+          + veureEpisodi()
+          + veureLlistaMyList()
+          + veureLlistaWatching()
+          + visualitzacions()
+          - Controller()
+      }
     }
-  }
-  
 
-  ub.edu.controller.Controller o-- ub.edu.model.CarteraClients : carteraClients
-  ub.edu.controller.Controller o-- ub.edu.resources.service.DataService : dataService
-  ub.edu.controller.Controller o-- ub.edu.resources.service.AbstractFactoryData : factory
+
+  controller.Controller o-- model.CarteraClients : carteraClients
+  controller.Controller o-- resources.service.DataService : dataService
+  controller.Controller o-- resources.service.AbstractFactoryData : factory
+  controller.Controller o-- model.carteraSeries : llistaSeries
 
 
 right footer

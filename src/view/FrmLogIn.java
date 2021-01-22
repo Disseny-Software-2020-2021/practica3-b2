@@ -1,6 +1,8 @@
 package view;
 
 
+import controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -17,11 +19,14 @@ class FrmLogIn extends JDialog {
     private JLabel labelUsername;
     private JLabel labelPassword;
     private JButton btnRegistrar;
-
+    private Controller controlador;
+    private String idClient;
     /**
      * Constructor de la finestra del LogIn on es fixa l'aspecte d'aquesta i s'inicialitzen els components
      */
+
     protected FrmLogIn() {
+        this.controlador = Controller.getInstance();
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(btnLogIn);
@@ -31,9 +36,14 @@ class FrmLogIn extends JDialog {
         setTitle("LOG IN");
     }
 
+    public String getClient(){
+        return this.idClient;
+    }
+
     /**
      * Mètode que inicialitza tots els components de la GUI del LogIn i s'afegeixen els listeners dels events per quan es fa la acció sobre els botons.
      */
+
     private void initComponents() {
         btnLogIn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -76,11 +86,26 @@ class FrmLogIn extends JDialog {
      */
     private void onOK() {
         try {
-            String info = "Log-in correcte";
-            JOptionPane.showMessageDialog(this, info, "INFORMACIÓ LOG-IN", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
+            idClient = textUsername.getText();
+            String psw = new String(textPassword.getPassword());
+            if (this.controlador.LoginClient(idClient, psw)) {
+                String info = "Log-in correcte";
+                this.idClient = idClient;
+                JOptionPane.showMessageDialog(this, info, "INFORMACIÓ LOG-IN", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            }
+            else{
+                String info = "Log-in incorrecte";
+                textPassword.setText("");
+                textUsername.setText("");
+                JOptionPane.showMessageDialog(this, info, "INFORMACIÓ LOG-IN", JOptionPane.INFORMATION_MESSAGE);
+            }
 
         } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "FINESTRA ERROR", JOptionPane.YES_NO_OPTION);
+        } catch (Exception e){
+            textPassword.setText("");
+            textUsername.setText("");
             JOptionPane.showMessageDialog(this, e.getMessage(), "FINESTRA ERROR", JOptionPane.YES_NO_OPTION);
         }
     }
@@ -102,4 +127,5 @@ class FrmLogIn extends JDialog {
         dialog.pack();
         dialog.setVisible(true);
     }
+
 }

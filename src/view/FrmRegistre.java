@@ -1,5 +1,6 @@
 package view;
 
+import controller.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -24,11 +25,13 @@ class FrmRegistre extends JDialog {
     private JTextField textUsername;
     private JPasswordField textPassword1;
     private JPasswordField textPassword2;
+    private Controller controlador;
 
     /**
      * Constructor de la finestra del Registre on es fixa l'aspecte d'aquesta i s'inicialitzen els components
      */
     protected FrmRegistre() {
+        this.controlador = Controller.getInstance();
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -86,6 +89,13 @@ class FrmRegistre extends JDialog {
                 textPassword2.setText("");
             }
             else{
+                String nomReal = new String(textNomReal.getText());
+                String idClient = new String(textUsername.getText());
+                String dni = new String(textDNI.getText());
+                String adress = new String(textAdreca.getText());
+                // VIP NO IMPLEMENTAT --> True per defecte
+                Boolean vip = true;
+                controlador.addClient(idClient, contrassenya1, dni, adress, vip);
                 String info = "Usuari afegit correctament";
                 JOptionPane.showMessageDialog(this, info, "INFORMACIÓ REGISTRE", JOptionPane.INFORMATION_MESSAGE);
                 if (info.equals("Usuari afegit correctament"))
@@ -97,6 +107,8 @@ class FrmRegistre extends JDialog {
                 }
             }
         } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR AL REGISTRAR", JOptionPane.YES_NO_OPTION);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR AL REGISTRAR", JOptionPane.YES_NO_OPTION);
         }
     }

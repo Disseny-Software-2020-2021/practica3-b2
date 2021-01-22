@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
@@ -66,12 +67,30 @@ public class Client {
     }
 
     public List<Usuari> getUsuaris() {
+        if(this.usuaris == null){
+            this.usuaris = new ArrayList<>();
+        }
         return this.usuaris;
+    }
+
+    public List<String> getUsuarisString() {
+        List<String> UsuarisString = new ArrayList<String>();
+        for (Usuari u: usuaris){
+            UsuarisString.add(u.getName());
+        }
+        return UsuarisString;
     }
 
     public Usuari findUserById(String idUser)  {
         for(Usuari u: usuaris){
             if(u.getIdUser().equals(idUser)) return u;
+        }
+        return null;
+    }
+
+    public Usuari findUser(String nom)  {
+        for(Usuari u: usuaris){
+            if(u.getName().equals(nom)) return u;
         }
         return null;
     }
@@ -100,11 +119,28 @@ public class Client {
         return false;
     }
     public Usuari addUsuari(String idClient, String Nomusuari, String idUsuari) throws Exception {
-        Usuari usuari = new Usuari(idClient, Nomusuari, idUsuari);
-        if (this.usuaris.size() < 5) {
+        if (this.usuaris == null){
+            Usuari usuari = new Usuari(idClient, Nomusuari, idUsuari);
+            usuari.setIdClient(idClient);
+            usuari.setIdUser(idUsuari);
+            usuari.setNom(Nomusuari);
+            this.usuaris = new ArrayList<Usuari>();
+            return usuari;
+        }
+        else if (this.usuaris.size() < 5) {
+            if (this.findUserByNameBool(idUsuari)){
+                throw new Exception("Ja existeix aquest usuari");
+            }
+            Usuari usuari = new Usuari(idClient, Nomusuari, idUsuari);
+            usuari.setIdClient(idClient);
+            usuari.setIdUser(idUsuari);
+            usuari.setNom(Nomusuari);
             return usuari;
         } else {
-            throw new Exception("Ja existeix aquest usuari");
+            throw new Exception("El numero d'usuaris ja es cinc");
         }
+    }
+    public void addlist(Usuari u){
+        this.usuaris.add(u);
     }
 }

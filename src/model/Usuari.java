@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuari {
@@ -17,7 +18,7 @@ public class Usuari {
     public Usuari(String idClient, String nom, String idUsuari) {
         this.idClient = idClient;
         this.nom = nom;
-        idUser = idUsuari;
+        this.idUser = idUsuari;
         icona = "Icona";
     }
 
@@ -31,6 +32,11 @@ public class Usuari {
 
     public String getName() {
         return nom;
+    }
+
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public void setName(String nom) {
@@ -60,6 +66,9 @@ public class Usuari {
     }
 
     public List<Serie> getMyList() {
+        if (mylist == null){
+            this.mylist = new ArrayList<>();
+        }
         return mylist;
 
     }
@@ -70,6 +79,9 @@ public class Usuari {
     }
 
     public List<Watching> getWatching() {
+        if(watching == null){
+            this.watching = new ArrayList<>();
+        }
         return watching;
 
     }
@@ -103,5 +115,22 @@ public class Usuari {
     public List<Usuari> getFollowers() {
         return followers;
 
+    }
+
+    public List<ValoracioEstrella> getValoracionsEstrella() {
+        if (this.valoracionsEstrella == null){
+            this.valoracionsEstrella = new ArrayList<>();
+        }
+        return valoracionsEstrella;
+    }
+    public void addList(ValoracioEstrella v){
+        if (this.valoracionsEstrella == null){
+            this.valoracionsEstrella = new ArrayList<>();
+        }
+        this.valoracionsEstrella.add(v);
+    }
+
+    public void setValoracionsEstrella(List<ValoracioEstrella> valoracionsEstrella) {
+        this.valoracionsEstrella = valoracionsEstrella;
     }
 }

@@ -16,6 +16,8 @@ class FormEpisodi extends JDialog{
     private JButton tornarAlMenuButton;
     private JPanel jpanel;
     private JLabel duracioEpisodi;
+    private String client;
+    private String usuari;
 
 
 
@@ -50,7 +52,7 @@ class FormEpisodi extends JDialog{
         setMaximumSize(new Dimension(600, 400));
 
         titolEpisodi.setText("<html><u> Títol de l'episodi:</u> " + " "+ "<html></u> " + titol);
-        duracioEpisodi.setText("<html><u> Duració:</u> " + duracio + " segons");
+        duracioEpisodi.setText("<html><u> Duració:</u> " + duracio + " minuts");
         descripcioEpisodi.setText("<html><body style=' width: 300 px'>"+"<html><u> Descripció:</u> " + descripcio);
         valorarButton.setEnabled(estaVisualitzat(idSerie, numTemporada, titol));
         tornarAlMenuButton.addActionListener(new ActionListener() {
@@ -72,6 +74,8 @@ class FormEpisodi extends JDialog{
             public void actionPerformed(ActionEvent e) {
                     FrmValoracio dialog = new FrmValoracio(idSerie, numTemporada, titol);
                     dialog.pack();
+                    dialog.setClient(client);
+                    dialog.setUsuari(usuari);
                     dialog.setVisible(true);
             }
         });
@@ -106,5 +110,19 @@ class FormEpisodi extends JDialog{
         return true;
     }
 
+    public void setClient(String client) {
+        this.client = client;
+    }
 
+    public String getClient() {
+        return client;
+    }
+
+    public String getUsuari() {
+        return usuari;
+    }
+
+    public void setUsuari(String usuari) {
+        this.usuari = usuari;
+    }
 }

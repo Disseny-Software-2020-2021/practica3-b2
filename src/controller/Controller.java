@@ -5,9 +5,7 @@ import resources.service.AbstractFactoryData;
 import resources.service.DataService;
 import resources.service.FactoryMOCK;
 
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Controller {
 
@@ -19,6 +17,7 @@ public class Controller {
     private List<Post> llistaPosts;
     private List<ValoracioEstrella> valoracionsEstrella;
     private List<ValoracioThumb> valoracionsThumb;
+    private String nomClient;
 
     private Controller() {
         factory = new FactoryMOCK();
@@ -34,9 +33,13 @@ public class Controller {
         }
     }
 
-    public static Controller getInstance(){
+    public static Controller getInstance(){ // Thread safe and lazy initialization
         if (instancia == null) {
-            instancia = new Controller();
+            synchronized (Controller.class){
+                if (instancia == null) {
+                    instancia = new Controller();
+                }
+            }
         }
         return instancia;
     }
@@ -116,15 +119,12 @@ public class Controller {
         return post;
     }
 
-    public String catalegSeries(String nom) {
+    public List<String> catalegSeries() {
+        List<String>llista = new ArrayList<>();
         for (String ec : this.llistarCatalegSeries()) {
-            if (ec.equals(nom)) {
-                return "succes";
-            }
+            llista.add(ec);
         }
-        return "fail";
-
-
+        return llista;
     }
 
     public String catalegPosts(String nom) {
@@ -140,8 +140,12 @@ public class Controller {
 
 
     public void addClient(String idClient, String psw, String dni, String adress, boolean vip) throws Exception {
+        if (idClient.equals("")  || psw.equals("")  || dni.equals("")  || adress.equals("")){
+            throw new Exception("ERROR: Omplena les dades");
+        }
         if ((carteraClients.find(idClient) == null) && (Client.isValidPassword(psw)) && (carteraClients.find_id(dni) == null)) {
             carteraClients.addClient(idClient, psw, dni, adress, vip);
+            this.dataService.addClient(carteraClients.find(idClient));
         } else {
             throw new Exception("Error");
         }
@@ -149,7 +153,7 @@ public class Controller {
 
     public void addUsuari(String idClient, String nom, String idusuari) throws Exception {
         Usuari u = this.carteraClients.find(idClient).addUsuari(idClient, nom, idusuari);
-        this.dataService.addUsuari(u);
+        this.carteraClients.find(idClient).addlist(u);
     }
 
     public boolean isValidPassword(String psw) {
@@ -257,13 +261,14 @@ public class Controller {
         return "Client no correcte";
     }
 
-    public String mostrarDetallsSerie(String nomSerie) throws Exception {
+    public String mostrarDetallsSerie(String nomSerie){
         for (Serie serie : llistaSeries.getLlista()) {
             if (serie.getTitol().equals(nomSerie)) {
                 return serie.getDescripcio();
             }
         }
-        throw new Exception("Error");
+        return "Error";
+        //throw new Exception("Error");
     }
 
     public String llistarFollowing(String idClient, String idUsuari, String idUser) {
@@ -358,13 +363,17 @@ public class Controller {
         return valoracioThumb.getValoracio();
     }
 
-    public void setValoracioEstrella(String idClient, String idUsuari, String idSerie, String idTemporada, String idEpisodi, int valoracio) throws Exception {
+    public void setValoracioEstrella(String idClient, String idUsuari, String idSerie, int idTemporada, String idEpisodi, int valoracio) throws Exception {
         try {
             if (carteraClients.find(idClient) != null) {
                 Usuari usuari = carteraClients.find(idClient).findUserByName(idUsuari);
                 if (usuari != null) {
-                    ValoracioEstrella v = usuari.valorarEstrella(idEpisodi, valoracio);
-                    this.dataService.setValoracioEstrella(idClient, idUsuari, idSerie, idTemporada, idEpisodi, v);
+                    List<Temporada> temporades = this.dataService.getTemporadesBySerie(idSerie);
+                    idTemporada = idTemporada - 1;
+                    Temporada temporada = temporades.get(idTemporada);
+                    String tempo = temporada.getIdTemporada();
+                    ValoracioEstrella v = carteraClients.find(idClient).findUserByName(idUsuari).valorarEstrella(idEpisodi, valoracio);
+                    carteraClients.find(idClient).findUserByName(idUsuari).addList(v);
                     valoracionsEstrella.add(v);
                 } else throw new Exception();
             } else throw new Exception();
@@ -416,5 +425,191 @@ public class Controller {
             }
         }
         return false;
+    }
+
+    public boolean LoginClient(String idClient, String psw){
+        try {
+            return carteraClients.validLogin(idClient, psw);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public List<String> getMyList(String idClient, String nom) {
+        List<String> llista = new ArrayList<>();
+        List<Serie> mylist = carteraClients.find(idClient).findUser(nom).getMyList();
+        for(Serie s: mylist){
+            llista.add(s.getTitol());
+        }
+        return llista;
+
+    }
+
+    public List<Usuari> getUsuaris(String idClient) {
+        return carteraClients.find(idClient).getUsuaris();
+
+    }
+
+    public List<String> getUsuarisString(String idClient) {
+        return carteraClients.find(idClient).getUsuarisString();
+
+    }
+
+    public List<String> getTemporades(String idSerie) {
+        List<String> llista = new ArrayList<>();
+        List<Temporada> temporades = llistaSeries.find(idSerie).getTemporades();
+        for(Temporada t: temporades){
+            llista.add(t.getIdTemporada());
+        }
+        return llista;
+    }
+
+    public List<String> getEpisodis(String idSerie, String temporada) {
+        List<String> llista = new ArrayList<>();
+        List<Temporada> temporades = llistaSeries.find(idSerie).getTemporades();
+        for(Temporada t: temporades){
+            if(t.getIdTemporada().equals(temporada)){
+                List<Episodi> episodis = t.getEpisodis();
+                for(Episodi e: episodis){
+                    llista.add(e.getIdEpisodi());
+                }
+            }
+        }
+        return llista;
+    }
+
+    public int getMinTotals(String idSerie, String temporada, String episodi){
+        List<Temporada> temporades = llistaSeries.find(idSerie).getTemporades();
+        for(Temporada t: temporades){
+            if(t.getIdTemporada().equals(temporada)){
+                List<Episodi> episodis = t.getEpisodis();
+                for(Episodi e: episodis){
+                    if(e.getIdEpisodi().equals(episodi)){
+                        return e.getMinutstotals();
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    public List<String> getWatched(String idClient, String nom){
+        List<String> llista = new ArrayList<>();
+        List<Watching> watched = carteraClients.find(idClient).findUser(nom).getWatching();
+        for(Watching w: watched){
+            Serie s = llistaSeries.find(w.getIdSerie());
+            if(w.getIdTemporada().equals(s.getTemporada(s.getTemporades().size()-1).getIdTemporada())){  // Ultima temporada
+                Temporada t = llistaSeries.find(w.getIdSerie()).find(w.getIdTemporada());
+                if(w.getIdEpisodi().equals(t.getEpisodi(t.getEpisodis().size()-1).getIdEpisodi())){  // Ultim episodi
+                    if(w.getNumMinuts().equals("Acabat")){  // Esta acabat
+                        llista.add(w.getIdSerie());
+                    }
+                }
+            }
+        }
+        return llista;
+    }
+
+    public List<String> getWatching(String idClient, String nom){
+        List<String> llista = new ArrayList<>();
+        List<Watching> watched = carteraClients.find(idClient).findUser(nom).getWatching();
+        for(Watching w: watched){
+            if(!w.getNumMinuts().equals("Acabat")){  // No esta acabat
+                if(!llista.contains(w.getIdSerie())){ // No esta la serie a llista
+                    llista.add(w.getIdSerie());
+                }
+            }
+        }
+        return llista;
+    }
+
+    public Iterable<Integer> llistarSeriesViews() {
+        SortedSet<Integer> views = new TreeSet<>();
+        if (llistaSeries.getLlista().isEmpty()) {
+            views.add(0);
+        } else {
+            for (Serie s : llistaSeries.getLlista()) {
+                views.add(s.getVisualitzacio());
+            }
+        }
+        return views;
+    }
+
+    public List<String> getTop10Views() {
+        List<String>llista = new ArrayList<>();
+        for (Integer views : this.llistarSeriesViews()) {
+            List<Serie> series = llistaSeries.getLlista();
+            for(Serie s: series){
+                if(s.getVisualitzacio() == views){
+                    llista.add(s.getTitol());
+                }
+            }
+        }
+        Collections.reverse(llista);
+        return llista;
+    }
+
+    public int visualitzacions(String serie){
+        return llistaSeries.find(serie).getVisualitzacio();
+    }
+
+    public Iterable<Float> llistarSeriesVal() {
+        float mitja = 0;
+        int cont = 0;
+        SortedSet<Float> valoracions = new TreeSet<>();
+        if (llistaSeries.getLlista().isEmpty()) {
+            valoracions.add((float) 0);
+        }else {
+            for (Serie s : llistaSeries.getLlista()) { // series
+                mitja = 0;
+                cont = 0;
+                for (Temporada t : s.getTemporades()) {
+                    for (Episodi e : t.getEpisodis()) {
+                        for (ValoracioEstrella val : this.valoracionsEstrella) {
+                            if (e.getIdEpisodi().equals(val.getEpisodi())) {
+                                mitja += val.getValoracio();
+                                cont++;
+                            }
+                        }
+                    }
+                    mitja = mitja / (float) cont;
+                    s.setMitjaValoracio(mitja);
+                    valoracions.add((float) mitja);
+                }
+            }
+        }
+        return valoracions;
+    }
+
+    public List<String> getTop10Val(){
+        List<String>llista = new ArrayList<>();
+        for (Float valoracions : this.llistarSeriesVal()) {
+            List<Serie> series = llistaSeries.getLlista();
+            for(Serie s: series){
+                if(s.getMitjaValoracio() == valoracions){
+                    llista.add(s.getTitol());
+                }
+            }
+        }
+        Collections.reverse(llista);
+        return llista;
+    }
+
+    public float valoracio(String serie){
+        return llistaSeries.find(serie).getMitjaValoracio();
+    }
+
+    public void setMyList(String idClient, String nom, String serie){
+        List<Serie> mylist = carteraClients.find(idClient).findUser(nom).getMyList();
+        mylist.add(llistaSeries.find(serie));
+    }
+
+    public void setNomClient(String nomClient) {
+        this.nomClient = nomClient;
+    }
+
+    public String getNomClient() {
+        return nomClient;
     }
 }
